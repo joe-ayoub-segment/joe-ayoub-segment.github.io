@@ -12,7 +12,7 @@
 
 </head> 
 <body> 
-<h1>V4! What is your favorite place to travel?</h1> 
+<h1>V6! What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">
      What is your favorite travel destination?
@@ -42,11 +42,15 @@
             Email: Email, 
             name: fullname, 
             destination: destination, 
-            details: details
+            details: details,
+            firstName: "fname is Joe",
+            FirstName: "fname is Joe"
         };
         analytics.identify('1234', {
             Email: Email, 
-            name: fullname
+            name: fullname,
+            firstName: "fname is Joe",
+            FirstName: "fname is Joe"
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
