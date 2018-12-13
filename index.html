@@ -25,7 +25,7 @@
     <br><br> 
     Name: <input name="fullname" required="" size="75" type="text"/> 
     <br><br> 
-    Email: <input name="Email" required="" size="75" type="email"/> 
+    Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
@@ -34,23 +34,19 @@
       function identify(e){
         e.preventDefault();
         var form = e.target;
-        var Email = form["Email"].value;
+        var email = form["email"].value;
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
         var user = {
-            Email: Email, 
+            email: email, 
             name: fullname, 
             destination: destination, 
-            details: details,
-            firstName: "fname is Joe",
-            FirstName: "fname is Joe"
+            details: details
         };
         analytics.identify('1234', {
-            Email: Email, 
-            name: fullname,
-            firstName: "fname is Joe",
-            FirstName: "fname is Joe"
+            email: email, 
+            name: fullname
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
