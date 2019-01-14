@@ -42,15 +42,43 @@
             email: email, 
             name: fullname, 
             destination: destination, 
+            
             details: details
         };
         analytics.identify('1234', {
             email: email, 
             name: fullname
         });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
+      //  analytics.track('destination submitted', user, function() {
+      //      window.location.href = "";
+      //  });
+          
+        analytics.track('Product List Viewed', {
+          list_id: 'hot_deals_1',
+          category: 'Deals',
+          products: [
+            {
+              product_id: '507f1f77bcf86cd799439011',
+              sku: '45790-32',
+              name: 'Monopoly: 3rd Edition',
+              price: 19,
+              position: 1,
+              category: 'Games',
+              url: 'https://www.example.com/product/path',
+              image_url: 'https://www.example.com/product/path.jpg'
+            },
+            {
+              product_id: '505bd76785ebb509fc183733',
+              sku: '46493-32',
+              name: 'Uno Card Game',
+              price: 3,
+              position: 2,
+              category: 'Games'
+            }
+          ]
+        });  
+          
+          
       }
     </script>
     
