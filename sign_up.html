@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>The Confluence ninja - sign up</title> 
+
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m");
+      analytics.page("Topics of interest page");
+      }}();
+    </script>
+
+</head> 
+<body> 
+<h1>Confluence tips, tricks and tutorials</h1> 
+<p>A lot of Confluence users never realise the full potential of the product and dismiss it as just another wiki. Over the coming months I'll be publishing useful tips, tricks and tutorials to help you get the most out of your Confluence instance. Sign up below and I'll keep you up to date as new content is released!</p>  
+<form name="topics_register" onsubmit="identify(event)">
+    What Confluence related topic would you most like to learn about? 
+    <select name="topic">
+      <option value="confluence_general_tips">General tips and tricks</option>
+      <option value="confluence_video_tutorials">Confluence video tutorials</option>
+      <option value="confluence_jira_tips">Working with JIRA</option>
+      <option value="confluence_project_management_practices">Project Management practices</option>
+      <option value="confluence_collaboration_best_practices">Collaboration best practices</option>
+    </select>
+    <br/>
+    <br/>
+    First name
+    <input name="first_name" required="" size="81" type="text"/>
+    <br/>
+    <br/>
+    Last name
+    <input name="last_name" required="" size="81" type="text"/>
+    <br/>  
+    <br/>
+    Email
+    <input name="email" required="" size="81" type="text"/>
+    <br/>
+    <br/>
+    Comments
+    <textarea cols="81" name="topic_comment" required="" rows="10">
+    </textarea> 
+    <br/>
+    <br/>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+   
+    <script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var first_name = form["first_name"].value;
+        var last_name = form["last_name"].value;
+        var topic_comment = form["topic_comment"].value;
+        var topic = form["topic"].options[form["topic"].selectedIndex].text
+        var user = {
+            email: email, 
+            first_name: first_name, 
+            last_name: last_name, 
+            topic_comment: topic_comment,
+            topic: topic
+        };
+        analytics.identify(user.first_name + '_' + user.last_name + '_id', {
+            email: user.email, 
+            first_name: user.first_name, 
+            last_name: user.last_name, 
+            topic: user.topic, 
+            topic_comment: user.topic_comment
+        });
+      }
+    </script>
+    
+    
+</body> 
+</html>
