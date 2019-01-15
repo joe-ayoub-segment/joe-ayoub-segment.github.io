@@ -125,8 +125,12 @@
         var product_id = form["product_id"].value;  
         var product_name = form["product_name"].value;  
         var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
-
-        var user = {
+        var product_price = 10;
+        if(course_duration == '4 weeks') {product_price = 20;}
+        if(course_duration == '6 weeks') {product_price = 30;}
+        if(course_duration == '8 weeks') {product_price = 40;}
+        
+          var user = {
             email: email, 
             full_name: full_name
         };
@@ -140,6 +144,7 @@
                 id: product_id,
                 name: product_name,
                 course_duration: course_duration,
+                price: product_price
                 }
             ] 
         });
