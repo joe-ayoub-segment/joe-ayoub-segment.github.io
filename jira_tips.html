@@ -40,108 +40,111 @@
     <br/>
     <br/>
     <br/>
+<div style="boder:1px solid #CCC;>  
+    <form name="register" onsubmit="fire_events(event)">
+        If you enjoyed this content then register for the JIRA tips course 
+        <input type="hidden" name="course_type" value="JIRA tips course"/>
+        <br/>
+        <br/>
+        Full name
+        <input name="full_name" required="" size="81" type="text"/>
+        <br/>  
+        <br/>
+        Email
+        <input name="email" required="" size="81" type="text"/>
+        <br/>  
+        <br/>
+        <input name="submit" type="submit" value="submit"/>
+    </form> 
+
+    <script type="text/javascript">
+      function fire_events(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var full_name = form["full_name"].value;
+        var course_type = form["course_type"].value;       
+        var user = {
+            email: email, 
+            full_name: full_name, 
+            course_type: course_type
+        };
+        analytics.identify(user.full_name + '_id', {
+            email: user.email, 
+            full_name: user.full_name 
+        });
+        analytics.track('Course Registered', {
+          course_type: user.course_type
+        });
+        alert('done');
+      }
+    </script>  
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+</div>  
     
-<form name="register" onsubmit="fire_events(event)">
-    If you enjoyed this content then register for the JIRA tips course 
-    <input type="hidden" name="course_type" value="JIRA tips course"/>
-    <br/>
-    <br/>
-    Full name
-    <input name="full_name" required="" size="81" type="text"/>
-    <br/>  
-    <br/>
-    Email
-    <input name="email" required="" size="81" type="text"/>
-    <br/>  
-    <br/>
-    <input name="submit" type="submit" value="submit"/>
-</form> 
-   
-<script type="text/javascript">
-  function fire_events(e){
-    e.preventDefault();
-    var form = e.target;
-    var email = form["email"].value;
-    var full_name = form["full_name"].value;
-    var course_type = form["course_type"].value;       
-    var user = {
-        email: email, 
-        full_name: full_name, 
-        course_type: course_type
-    };
-    analytics.identify(user.full_name + '_id', {
-        email: user.email, 
-        full_name: user.full_name 
-    });
-    analytics.track('Course Registered', {
-      course_type: user.course_type
-    });
-    alert('done');
-  }
-</script>  
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-<form name="order" onsubmit="submit_order(event)">
-    Buy the JIRA tips course now!
-    <br/>
-    <br/>
-    <input type="hidden" name="order_id" value="123456"/>
-    <input type="hidden" name="product_id" value="prod_1_id"/>
-    <input type="hidden" name="product_name" value="JIRA tips course"/>
-    <br/>
-    <br/>
-    <select name="course_duration">
-      <option value="2 weeks">2 weeks</option>
-      <option value="4 weeks">4 weeks</option>
-      <option value="6 weeks">6 weeks</option>
-      <option value="8 weeks">8 weeks</option>
-    </select>
-    <br/>
-    <br/>
-    Full name
-    <input name="full_name" required="" size="81" type="text"/>
-    <br/>  
-    <br/>
-    Email
-    <input name="email" required="" size="81" type="text"/>
-    <br/>  
-    <br/>
-    <input name="submit" type="submit" value="Complete order"/>
-</form>
-    
-<script type="text/javascript">
-  function submit_order(e){
-    e.preventDefault();
-    var form = e.target;
-    var email = form["email"].value;
-    var full_name = form["full_name"].value;
-    var order_id = form["order_id"].value;   
-    var product_id = form["product_id"].value;  
-    var product_name = form["product_name"].value;  
-    var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
-    
-    var user = {
-        email: email, 
-        full_name: full_name
-    };
-    analytics.identify(user.full_name + '_id', {
-        email: user.email, 
-        full_name: user.full_name 
-    });
-    analytics.track('Order Completed', {
-        order_id, order_id
-        products: [ {
-            id: product_id,
-            name: product_name,
-            course_duration: course_duration,
-            }
-        ] 
-    });
-    alert('done');
-  }
-</script>  
-    
+<div style="boder:1px solid #CCC;>    
+    <form name="order" onsubmit="submit_order(event)">
+        Buy the JIRA tips course now!
+        <br/>
+        <br/>
+        <input type="hidden" name="order_id" value="123456"/>
+        <input type="hidden" name="product_id" value="prod_1_id"/>
+        <input type="hidden" name="product_name" value="JIRA tips course"/>
+        <br/>
+        <br/>
+        <select name="course_duration">
+          <option value="2 weeks">2 weeks</option>
+          <option value="4 weeks">4 weeks</option>
+          <option value="6 weeks">6 weeks</option>
+          <option value="8 weeks">8 weeks</option>
+        </select>
+        <br/>
+        <br/>
+        Full name
+        <input name="full_name" required="" size="81" type="text"/>
+        <br/>  
+        <br/>
+        Email
+        <input name="email" required="" size="81" type="text"/>
+        <br/>  
+        <br/>
+        <input name="submit" type="submit" value="Complete order"/>
+    </form>
+
+    <script type="text/javascript">
+      function submit_order(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var full_name = form["full_name"].value;
+        var order_id = form["order_id"].value;   
+        var product_id = form["product_id"].value;  
+        var product_name = form["product_name"].value;  
+        var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
+
+        var user = {
+            email: email, 
+            full_name: full_name
+        };
+        analytics.identify(user.full_name + '_id', {
+            email: user.email, 
+            full_name: user.full_name 
+        });
+        analytics.track('Order Completed', {
+            order_id, order_id
+            products: [ {
+                id: product_id,
+                name: product_name,
+                course_duration: course_duration,
+                }
+            ] 
+        });
+        alert('done');
+      }
+    </script>  
+</div>  
 </body> 
 </html>
