@@ -71,8 +71,7 @@
     };
     analytics.identify(user.full_name + '_id', {
         email: user.email, 
-        full_name: user.full_name, 
-        course_type: user.course_type, 
+        full_name: user.full_name 
     });
     analytics.track('Course Registered', {
       course_type: user.course_type
