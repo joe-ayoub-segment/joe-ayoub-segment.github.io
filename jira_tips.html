@@ -120,7 +120,7 @@
     var order_id = form["order_id"].value;   
     var product_id = form["product_id"].value;  
     var product_name = form["product_name"].value;  
-    var course_duration = form["course_duration"].value;  
+    var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
     
     var user = {
         email: email, 
