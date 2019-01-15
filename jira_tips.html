@@ -35,5 +35,50 @@
     
 <h1>JIRA tips</h1> 
 <p>Confluence integrates closely with JIRA. Check back here for tips on how to get JIRA set up, and patterns you can use to get the most out of the integration.</p>  
+  
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+<form name="register" onsubmit="fire_events(event)">
+    If you enjoyed this content then register for the JIRA tips course 
+    <input type="hidden" name="course_type" value="JIRA tips course"/>
+    <br/>
+    <br/>
+    Full name
+    <input name="full_name" required="" size="81" type="text"/>
+    <br/>  
+    <br/>
+    Email
+    <input name="email" required="" size="81" type="text"/>
+    <br/>  
+    <br/>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+   
+<script type="text/javascript">
+  function fire_events(e){
+    e.preventDefault();
+    var form = e.target;
+    var email = form["email"].value;
+    var full_name = form["full_name"].value;
+    var course_type = form["course_type"].value;       
+    var user = {
+        email: email, 
+        full_name: full_name, 
+        course_type: course_type
+    };
+    analytics.identify(user.full_name + '_id', {
+        email: user.email, 
+        full_name: user.full_name, 
+        course_type: user.course_type, 
+    });
+    analytics.track('Course Registered', {
+      course_type: user.course_type
+    });
+  }
+</script>  
+    
 </body> 
 </html>
