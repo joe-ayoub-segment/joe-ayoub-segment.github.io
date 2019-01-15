@@ -34,6 +34,51 @@
 </ul>
     
 <h1>Confluence collaboration best practices</h1> 
-<p>There's a right and a wrong way to use Confluence for collaboration. Learn how to do it right, here.</p>  
+<p>There's a right and a wrong way to use Confluence for collaboration. Learn how to do it right, here.</p> 
+    
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+<form name="register" onsubmit="fire_events(event)">
+    If you enjoyed this content then register for the Confluence Collaboration course 
+    <input type="hidden" name="course_type" value="Collaboration course"/>
+    <br/>
+    <br/>
+    Full name
+    <input name="full_name" required="" size="81" type="text"/>
+    <br/>  
+    <br/>
+    Email
+    <input name="email" required="" size="81" type="text"/>
+    <br/>  
+    <br/>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+   
+<script type="text/javascript">
+  function fire_events(e){
+    e.preventDefault();
+    var form = e.target;
+    var email = form["email"].value;
+    var full_name = form["full_name"].value;
+    var course_type = form["course_type"].value;       
+    var user = {
+        email: email, 
+        full_name: full_name, 
+        course_type: course_type
+    };
+    analytics.identify(user.full_name + '_id', {
+        email: user.email, 
+        full_name: user.full_name, 
+        course_type: user.course_type, 
+    });
+    analytics.track('Course Registered', {
+      course_type: user.course_type
+    });
+  }
+</script>    
+    
 </body> 
 </html>
