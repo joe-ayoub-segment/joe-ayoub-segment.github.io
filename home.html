@@ -10,6 +10,12 @@
       }}();
     </script>
 
+    <script>
+        function getApp(type) {
+            analytics.track('Get App Button Click', {app_type: type});
+        }
+    </script>
+    
 </head> 
 <body> 
 <ul>
@@ -35,5 +41,8 @@
     
 <h1>Welcome to the Confluence Ninja!</h1> 
 <p>Learn how to use Confluence like a pro.</p>  
+    
+    Have you downloaded our app? <a href="javascript:;" onclick="javascript:getApp('iOS');">iOS</a>, <a href="href="javascript:;" onclick="javascript:getApp('Android');">Android</a>
+    
 </body> 
 </html>
