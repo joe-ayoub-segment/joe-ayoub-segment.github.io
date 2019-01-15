@@ -90,7 +90,7 @@
         Buy the JIRA tips course now!
         <br/>
         <br/>
-        <input type="hidden" name="order_id" value="123456"/>
+        <input type="hidden" name="order_id" value=""/>
         <input type="hidden" name="product_id" value="prod_1_id"/>
         <input type="hidden" name="product_name" value="JIRA tips course"/>
         <br/>
@@ -121,7 +121,7 @@
         var form = e.target;
         var email = form["email"].value;
         var full_name = form["full_name"].value;
-        var order_id = form["order_id"].value;   
+        var order_id = Math.floor((Math.random() * 10000) + 1);   
         var product_id = form["product_id"].value;  
         var product_name = form["product_name"].value;  
         var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
