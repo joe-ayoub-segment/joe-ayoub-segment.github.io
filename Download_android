@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>The Confluence ninja - Download Android</title> 
+
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m");
+      analytics.page("Download_android");
+      }}();
+    </script>
+
+    <script>
+        function getApp(type) {
+            analytics.track('Download_android', {app_type: type});
+            alert('done');
+        }
+    </script>
+    
+</head> 
+<body> 
+<ul>
+    <li>
+        <a href="https://joe-ayoub-segment.github.io/home.html">Home</a>
+    </li>
+    <li>
+        <a href="https://joe-ayoub-segment.github.io/sign_up.html">Sign up</a>
+    </li>
+    <li>
+        <a href="https://joe-ayoub-segment.github.io/video_tutorials.html">Confluece Video tutorials</a>
+    </li> 
+    <li>
+       <a href="https://joe-ayoub-segment.github.io/jira_tips.html">JIRA tips</a>
+    </li>
+    <li>    
+        <a href="https://joe-ayoub-segment.github.io/project_management.html">Project Management</a>
+    </li>
+    <li>
+        <a href="https://joe-ayoub-segment.github.io/collaboration_best_practices.html">Collaboration best practices</a>
+    </li>
+</ul>
+    
+<h1>Download the Confluence Ninja Android app!</h1> 
+<p></p>  
+Need some sort of content here. This page is to test Branch Metrics / deep linking
+    <br/><br/><br/>
+    
+    
+</body> 
