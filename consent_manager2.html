@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="Page" lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+<meta charset="utf-8" />
+<script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+          analytics.page("Page Call Should Be Blocked Until Terms Accepted");
+      }}();
+    </script>
+<script type='text/javascript'>
+      window.consentManagerConfig = function(exports) {
+        
+        const segmentWriteKey = 'f0mkFrd38lR8LW97t73odW9VkiQP532m'
+        const bannerContent = 'We use cookies (and other similar technologies) to collect data to improve your experience on our site.'
+        const bannerSubContent = 'You can change your preferences at any time.'
+        const preferencesDialogTitle = 'Website Data Collection Preferences'
+        const preferencesDialogContent = 'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
+        const cancelDialogTitle = 'Are you sure you want to cancel?'
+        const cancelDialogContent = 'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
+      
+        return {
+          container: '#ConsentManagerTarget',
+          writeKey: segmentWriteKey,
+          
+          bannerContent: bannerContent,
+          implyConsentOnInteraction: false,
+          bannerSubContent: bannerSubContent,
+          preferencesDialogTitle: preferencesDialogTitle,
+          preferencesDialogContent: preferencesDialogContent,
+          cancelDialogTitle: cancelDialogTitle,
+          cancelDialogContent: cancelDialogContent  
+        }
+      }
+    </script>
+<script src="https://joe-ayoub-segment.github.io/consent_manager_source.js" crossorigin="anonymous" defer></script>
+</head>
+<body class="Page-body">
+
+This page should use a consent manager compiled and customized by Joe
+
+<div id="ConsentManagerTarget"></div>
+<main class="Page-main">
+<div class="Page-pageLead"></div>
+</main>
+<div class="Page-below"></div>
+</body>
+</html>
