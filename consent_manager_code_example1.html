@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Test Consent Manager</title>
+</head>
+
+<body>
+<p>
+This Consent Manager code example uses element attributes to set the configuration options for the Consent Manager. 
+i.e the configuration is added to the script tag as attributes. 
+</p>
+<p>
+This type of configuration doesn't work on some IE browsers, so if IE is important to the customer then do not use this configuration method. 
+</P>
+
+  <!-- add a container div-->
+  <div id="target-container"></div>
+
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+    // Comment out writekey
+    //analytics.load("XC5bHAWTSHnGyDM0DfKM417N2guikP9r");
+    analytics.page();
+    }}();
+  </script>
+
+  <!-- removed integrity check cause of failure: integrity="sha256-N/wC00Ta5lCOuOSL3dT3NF9tb9roS8uxTPGQ2Iqe70cqo=" -->
+
+  <script
+    src="https://unpkg.com/@segment/consent-manager@1.2.0/standalone/consent-manager.js"
+    crossorigin="anonymous"
+    defer
+    data-container="#target-container"
+    data-writeKey="XC5bHAWTSHnGyDM0DfKM417N2guikP9r"
+    data-bannerContent="We use cookies (and other similar technologies) to collect data to improve your experience on our site."
+    data-bannerSubContent="You can change your preferences at any time."
+    data-preferencesDialogTitle="Website Data Collection Preferences"
+    data-preferencesDialogContent="We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site."
+    data-cancelDialogTitle="Are you sure you want to cancel?"
+    data-cancelDialogContent="Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy."
+  ></script>
+
+  <script>
+    setTimeout(() => {
+      // The consent manager global doesn't exist until script load
+      consentManager.openConsentManager()
+      console.log('test')
+    }, 1000)
+  </script>
+</body>
+</html>
