@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="Page" lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+<meta charset="utf-8" />
+<script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+          analytics.page("Page Call Should Be Blocked Until Terms Accepted");
+      }}();
+    </script>
+<script type='text/javascript'>
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+setCookie('{"version":1,"destinations":{"Amazon S3":true,"Amplitude":true,"Appboy":false,"Appcues":false,"CleverTap":false,"Facebook Pixel":false,"FullStory":false,"Google Analytics":true,"Google Tag Manager":false,"Heap":true,"MailChimp":true,"Mixpanel":true,"Personas":false,"Sailthru":false,"Salesforce":false,"Salesforce Marketing Cloud":true,"SatisMeter":true,"Test Custom Destination":true,"Twitter Ads":false,"Visual Tagger":true,"Webhooks":true,"tray.io":false},"custom":{"marketingAndAnalytics":true,"advertising":false,"functional":false}}');
+
+
+analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m");
+
+      
+    </script>
+
+</head>
+<body class="Page-body">
+<div id="ConsentManagerTarget"></div>
+<main class="Page-main">
+<div class="Page-pageLead"></div>
+</main>
+<div class="Page-below"></div>
+</body>
+</html>
