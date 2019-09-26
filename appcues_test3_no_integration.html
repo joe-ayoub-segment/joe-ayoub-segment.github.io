@@ -29,6 +29,18 @@
     alert('fired identify call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
   }
  });
+     
+ analytics.on('page', function(event, properties, options) {
+  if(window.Appcues && analytics.user().id())
+  {
+    //window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
+    //alert('fired identify page with userId' + analytics.user().id() + ' and properties ' + properties);
+      
+    alert('event = ' + JSON.stringify(event));
+    alert('properties = ' + JSON.stringify(properties));
+    alert('options = ' + JSON.stringify(options));      
+  }
+ });
  
  </script>
 
