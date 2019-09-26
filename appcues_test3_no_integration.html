@@ -26,7 +26,7 @@
   if(window.Appcues && analytics.user().id())
   {
     window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
-    alert('fired track call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
+    alert('fired identify call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
   }
  });
  
