@@ -10,25 +10,26 @@
       }}();
     </script>
 
+    <script src="//fast.appcues.com/56478.js"></script>
+
 
  <script>
  analytics.on('track', function(event, properties, options) {
-
-  alert('track');
-
+  if(window.Appcues && analytics.user().id())
+  {
+    window.Appcues.track(analytics.user().id(), analytics.user().properties());    
+    alert('fired track call with userId' + analytics.user().id() + ' and properties ' + analytics.user().properties());
+  }
  });
  
  analytics.on('identify', function(event, properties, options) {
-
-    alert('identify');
-
+  if(window.Appcues && analytics.user().id())
+  {
+    window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
+    alert('fired track call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
+  }
  });
  
- analytics.on('page', function(event, properties, options) {
-
-    alert('page');
-
- });
  </script>
 
 </head> 
