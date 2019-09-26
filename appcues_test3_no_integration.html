@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Appcues test page</title> 
+
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m", { integration: {Appcues: false}});
+      
+      }}();
+    </script>
+
+
+ <script>
+ analytics.on('track', function(event, properties, options) {
+
+  alert('track');
+
+ });
+ 
+ analytics.on('identify', function(event, properties, options) {
+
+    alert('identify');
+
+ });
+ 
+ analytics.on('page', function(event, properties, options) {
+
+    alert('page');
+
+ });
+ </script>
+
+</head> 
+<body> 
+
+    
+<h1>Appcues test page</h1> 
+<p>This page doesn't load Appcues through Segment. Instead Appcues is natively installed. However whenever a Segment event is fired we'll invoke an Appcues track, identify or page event via an analytics.on call</p>  
+    
+<p>To test this, just fire page, track or identify calls from the Chrome console</p>
+
+
+</body> 
+</html>
