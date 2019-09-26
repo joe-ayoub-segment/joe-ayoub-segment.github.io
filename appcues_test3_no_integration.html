@@ -17,24 +17,37 @@
  analytics.on('track', function(event, properties, options) {
   if(window.Appcues && analytics.user().id())
   {
-    window.Appcues.track(analytics.user().id(), analytics.user().properties());    
-    alert('fired track call with userId' + analytics.user().id() + ' and properties ' + analytics.user().properties());
+    //window.Appcues.track(analytics.user().id(), analytics.user().properties());    
+    //alert('fired track call with userId' + analytics.user().id() + ' and properties ' + analytics.user().properties());
+      
+    window.Appcues.page(properties, options);    
+      
+    alert('event = ' + JSON.stringify(event));
+    alert('properties = ' + JSON.stringify(properties));
+    alert('options = ' + JSON.stringify(options));    
+      
   }
  });
  
  analytics.on('identify', function(event, properties, options) {
   if(window.Appcues && analytics.user().id())
   {
-    window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
-    alert('fired identify call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
+    //window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
+    //alert('fired identify call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
+  
+    window.Appcues.page(properties, options);    
+      
+    alert('event = ' + JSON.stringify(event));
+    alert('properties = ' + JSON.stringify(properties));
+    alert('options = ' + JSON.stringify(options));  
+  
   }
  });
      
  analytics.on('page', function(event, properties, options) {
   if(window.Appcues && analytics.user().id())
   {
-    //window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
-    //alert('fired identify page with userId' + analytics.user().id() + ' and properties ' + properties);
+    window.Appcues.page(properties, options);    
       
     alert('event = ' + JSON.stringify(event));
     alert('properties = ' + JSON.stringify(properties));
