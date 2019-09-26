@@ -15,43 +15,32 @@
 
  <script>
  analytics.on('track', function(event, properties, options) {
-  if(window.Appcues && analytics.user().id())
+  // need to ensure there is a userId, otherwise don't try and fire a identify call to Appcues
+  // 'event' contains the event name, e.g. "Button Clicked"
+  // 'properties' contains the event properties, e.g. "link_text:'click me'"
+  if(window.Appcues && analytics.user().id() && event)
   {
-    //window.Appcues.track(analytics.user().id(), analytics.user().properties());    
-    //alert('fired track call with userId' + analytics.user().id() + ' and properties ' + analytics.user().properties());
-      
-    window.Appcues.page(properties, options);    
-      
-    alert('event = ' + JSON.stringify(event));
-    alert('properties = ' + JSON.stringify(properties));
-    alert('options = ' + JSON.stringify(options));    
-      
+     window.Appcues.page(event, properties);     
   }
  });
  
  analytics.on('identify', function(event, properties, options) {
-  if(window.Appcues && analytics.user().id())
+  // need to ensure there is a userId and an event name, otherwise don't try and fire a track event to Appcues
+  // 'event' contains the userId, e.g. "user_00001"
+  // 'properties' contains the user traits, e.g. "first_name:'Joe'"
+  if(window.Appcues && analytics.user().id() && event)
   {
-    //window.Appcues.identify(analytics.user().id(), analytics.user().traits());    
-    //alert('fired identify call with userId' + analytics.user().id() + ' and traits ' + analytics.user().traits());
-  
-    window.Appcues.page(properties, options);    
-      
-    alert('event = ' + JSON.stringify(event));
-    alert('properties = ' + JSON.stringify(properties));
-    alert('options = ' + JSON.stringify(options));  
-  
+    window.Appcues.page(event, properties);     
   }
  });
      
  analytics.on('page', function(event, properties, options) {
-  if(window.Appcues && analytics.user().id())
+  // need to ensure there is a userId and a page name, otherwise don't try and fire a page event to Appcues
+  // 'properties' contains the page name
+  // 'options' contains the page event properties, including url, querystring and any other custom properties 
+  if(window.Appcues && analytics.user().id() && properties)
   {
-    window.Appcues.page(properties, options);    
-      
-    alert('event = ' + JSON.stringify(event));
-    alert('properties = ' + JSON.stringify(properties));
-    alert('options = ' + JSON.stringify(options));      
+    window.Appcues.page(properties, options);        
   }
  });
  
