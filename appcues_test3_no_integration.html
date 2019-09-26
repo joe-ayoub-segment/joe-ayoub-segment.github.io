@@ -20,7 +20,7 @@
   // 'properties' contains the event properties, e.g. "link_text:'click me'"
   if(window.Appcues && analytics.user().id() && event)
   {
-     window.Appcues.page(event, properties);     
+     window.Appcues.track(event, properties);     
   }
  });
  
@@ -30,7 +30,7 @@
   // 'properties' contains the user traits, e.g. "first_name:'Joe'"
   if(window.Appcues && analytics.user().id() && event)
   {
-    window.Appcues.page(event, properties);     
+    window.Appcues.identify(event, properties);     
   }
  });
      
