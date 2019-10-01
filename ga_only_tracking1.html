@@ -36,11 +36,6 @@
     <div>Set the userid - for Universal Analytics Tracking Code (analytics.js):</div>
     <div>ga('set', 'userId', 'USER_ID'); // Set the user ID using signed-in user_id.<div>
     
-    <br/>
-    
-    <div>Sending events:</div>
-    <div>gtag('event', 'login', {'method': 'Google'});<div>    
-    
     <br/>    
         
     <div>Sending a page view</div>
@@ -49,17 +44,21 @@
         'page_title' : 'homepage',<br/>
         'page_path': '/home'<br/>
         });<br/>
-    </div>
+    </div>        
+        
+    <br/>
     
+    <div>Sending events:</div>
+    <div>gtag('event', eventName, eventParameters);<div>    
+        
     <br/>
     
     <div>Sending an event (see <a href="https://developers.google.com/analytics/devguides/collection/gtagjs/events">here</a> for ecomm spec)</div>
     <div>
-        gtag('event', '<action>', {<br/>
-        'event_category': '<category>',<br/>
-        'event_label': '<label>',<br/>
-        'value': '<value>'<br/>
-        });<br/>
+     gtag('event', 'play', {<br/>
+      'event_category': 'Videos',<br/>
+      'event_label': 'Fall Campaign'<br/>
+     });<br/>
     </div>
         
     
