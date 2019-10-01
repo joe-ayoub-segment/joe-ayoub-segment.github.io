@@ -10,7 +10,11 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'UA-130590100-2');
+      gtag('config', 'UA-130590100-2', { 
+          'send_page_view': false, // tells google analytics to not fire a page call automatically
+           'currency': 'EUR', // tells google analytics to include currency and country automatically with every call
+           'country': 'IE'
+      });
     </script>
 
 </head> 
@@ -26,12 +30,20 @@
     <div>Commands:</div>
     <div>Set the userid - for Global Site Tag Tracking Code (gtag.js):</div>
     <div>gtag('set', {'user_id': 'USER_ID'}); // Set the user ID using signed-in user_id.<div>
-    
+   
+    <br/>
         
     <div>Set the userid - for Universal Analytics Tracking Code (analytics.js):</div>
     <div>ga('set', 'userId', 'USER_ID'); // Set the user ID using signed-in user_id.<div>
     
-
+    <br/>
     
+    <div>Sending events:</div>
+    <div>gtag('event', 'login', {'method': 'Google'});<div>    
+    
+    <br/>    
+        
+        
+        
 </body> 
 </html>
