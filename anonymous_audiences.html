@@ -18,6 +18,7 @@
    analytics.ready(function() {
     
     const anonymousId = analytics.user().anonymousId();
+       alert(anonymousId);
     const Http = new XMLHttpRequest();
     const url= `http://localhost:3000/?anonymousId=${anonymousId}`;
     Http.open("GET", url);
