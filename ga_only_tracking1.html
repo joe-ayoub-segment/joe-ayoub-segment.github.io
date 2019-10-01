@@ -43,13 +43,25 @@
     
     <br/>    
         
-        <div>Sending a page view</div>
-        <div>
-            gtag('config', 'GA_MEASUREMENT_ID', { <br/>
-            'page_title' : 'homepage',<br/>
-            'page_path': '/home'<br/>
-            });<br/>
-        </div>
+    <div>Sending a page view</div>
+    <div>
+        gtag('config', 'GA_MEASUREMENT_ID', { <br/>
+        'page_title' : 'homepage',<br/>
+        'page_path': '/home'<br/>
+        });<br/>
+    </div>
+    
+    <br/>
+    
+    <div>Sending an event</div>
+    <div>
+        gtag('event', <action>, {<br/>
+        'event_category': <category>,<br/>
+        'event_label': <label>,<br/>
+        'value': <value><br/>
+        });<br/>
+    </div>
         
+    
 </body> 
 </html>
