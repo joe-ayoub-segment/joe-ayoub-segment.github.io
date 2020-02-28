@@ -8,11 +8,21 @@
 </head>
 
 <body>
+  
+<h1>WebView to Native event</h1>
+   <p>This is a Webview page</p>
+  
+  <div id="main">
+   <button id="recordEvent" onclick="recordEvent()"> Record Event </button>
+  </div>
+
   <script type="text/javascript">
-    var eventProperties = "{\"my_property\":\"my_value\"}";
-    segment_webview.track("Webview Event Occurred", eventProperties);
+   function recordEvent(){
+     var eventName = "Test Webview Event";
+     var eventParams = "{\"my_property1\":\"6.72\", \"my_property2\": \"some value\", \"my_property3\": \"245345\"}";
+     segment_webview.track(eventName, eventParams)
+  }
   </script>
 
-  <p>This is a Webview page</p>
 </body>
 </html>
