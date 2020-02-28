@@ -28,8 +28,10 @@
      var eventName = "Test Webview Event";
      var eventParams = "{\"my_property1\":\"6.72\", \"my_property2\": \"some value\", \"my_property3\": \"245345\"}";
      if (window.AnalyticsWebInterface) {
+        alert('firing event to native app');
         segment_webview.track(eventName, eventParams)
      } else {
+        alert('firing event to analytics.js');
         analytics.track(eventName);
      }
   }
