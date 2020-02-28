@@ -2,36 +2,14 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-
+   <meta charset="utf-8">
   <title>This is a Webview page</title>
-  
-
-  
 </head>
-
 <body>
-  
-<h1>WebView to Native event</h1>
-   <p>This is a Webview page</p>
-  
-  <div id="main">
-   <button id="recordEvent" onclick="recordEvent()"> Record Event </button>
-  </div>
-
   <script type="text/javascript">
-   function recordEvent(){
-     var eventName = "Test Webview Event";
-     var eventParams = "{\"my_property1\":\"6.72\", \"my_property2\": \"some value\", \"my_property3\": \"245345\"}";
-     //if (window.MainJSInterface) {
-     //   alert('firing event to native app');
-        segment_webview.track(eventName, eventParams)
-     //} else {
-     //   alert('firing event to analytics.js');
-     //   analytics.track(eventName);
-     //}
-  }
+    var eventProperties = "{\"my_property\":\"my_value\"}";
+    segment_webview.track("Webview Event Occurred", eventProperties);
   </script>
-
+  <p>This is a Webview page</p>
 </body>
 </html>
