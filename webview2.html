@@ -30,7 +30,7 @@
      var eventParams = {my_property1:6.72, my_property2: "some value", my_property3:245345};
      
      // if the page is executing in a webview then stringify the parameters and call the webview track() event
-     if(segment_webview !== "undefined"){
+     if(typeof segment_webview !== "undefined"){
       eventParams = JSON.stringify(eventParams);
       segment_webview.track(eventName, eventParams)
      // if the page is not executing in a webview then call the regular analytics.js track() event
