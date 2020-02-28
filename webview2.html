@@ -22,6 +22,8 @@
   <div id="main">
    <button id="recordEvent" onclick="recordEvent()"> Record Event </button>
   </div>
+  
+  <div id="messages"></div>
 
   <script type="text/javascript">
    function recordEvent(){
@@ -40,18 +42,26 @@
       segment_webview.track(eventName, eventParams)
        
       // write a line to the page indicating that a Segment Android SDK track event was fired
-      document.writeln("<p>Segment Android SDK track event was fired</p>"); 
+      logToPage("Android SDK"); 
        
      // if the page is not executing in a webview then call the regular analytics.js track() event
      } else {
        
       // call the Segment analytics.js version of the track call
-      analytics.track(eventName, eventParams);
-      
+      analytics.track(eventName, eventParams); 
+       
       // write a line to the page indicating that an analytics.js track event was fired
-      document.writeln("<p>analytics.js event fired</p>"); 
+      logToPage("analytics.js"); 
      }
   }
+  
+  // this function just displays a notice every time an event is fired, and indicates if the event was from analytics.js or Android SDK 
+  function logToPage(platform){
+      var node = document.createElement("p");                 
+      var textnode = document.createTextNode(`${platform} track event fired`);         
+      node.appendChild(textnode);                              
+      document.getElementById("messages").appendChild(node); 
+  }  
   </script>
 </body>
 </html>
