@@ -5,6 +5,13 @@
   <meta charset="utf-8">
 
   <title>This is a Webview page</title>
+  
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m");
+      }}();
+    </script>
+  
 </head>
 
 <body>
@@ -19,11 +26,18 @@
   <script type="text/javascript">
    function recordEvent(){
      
-     alert(segment_webview);
-     
      var eventName = "Test Webview Event";
-     var eventParams = "{\"my_property1\":\"6.72\", \"my_property2\": \"some value\", \"my_property3\": \"245345\"}";
-     segment_webview.track(eventName, eventParams)
+     var eventParams = {my_property1:6.72, my_property2: "some value", my_property3:245345};
+     
+     // if the page is executing in a webview then stringify the parameters and call the webview track() event
+     if(segment_webview){
+      eventParams = JSON.stringify(eventParams);
+      segment_webview.track(eventName, eventParams)
+     // if the page is not executing in a webview then call the regular analytics.js track() event
+     } else {
+      analytics.track(eventName, eventParams);
+     }
+     
   }
   </script>
 
