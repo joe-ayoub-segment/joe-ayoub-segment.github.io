@@ -20,14 +20,15 @@
   <p>This is a HTML page</p>
   
   <div id="main">
-   <button id="recordEvent" onclick="recordEvent()"> Record Event </button>
+   <button id="recordTrackEvent" onclick="recordTrackEvent()"> Record Track Event</button> <br/>
+   <button id="recordIdentifyEvent" onclick="recordIdentifyEvent()"> Record Identify Event</button>
   </div>
   
   <div id="messages"></div>
 
   <script type="text/javascript">
-   function recordEvent(){
-     
+   function recordTrackEvent(){
+
      // Segment track event name
      var eventName = "Test Webview Event";
      
@@ -42,7 +43,7 @@
       segment_webview.track(eventName, eventParams)
        
       // write a line to the page indicating that a Segment Android SDK track event was fired
-      logToPage("Android SDK"); 
+      logToPage("track", "Android SDK"); 
        
      // if the page is not executing in a webview then call the regular analytics.js track() event
      } else {
@@ -51,14 +52,40 @@
       analytics.track(eventName, eventParams); 
        
       // write a line to the page indicating that an analytics.js track event was fired
-      logToPage("analytics.js"); 
+      logToPage("track", "analytics.js"); 
      }
   }
   
+  function recordIdentifyEvent(){
+     
+     // Segment identify event traits
+     var eventParams = {my_trait1:6.72, my_trait2: "some trait valuue", my_trait3:245345};
+     
+     // if the page is executing in a webview then stringify the parameters and call the webview identify() event
+     if(typeof segment_webview !== "undefined"){
+      // parameters sent to the Native app must be stringified
+      eventParams = JSON.stringify(eventParams);
+      // call the native app version of the track call
+      segment_webview.identify(eventParams)
+       
+      // write a line to the page indicating that a Segment Android SDK track event was fired
+      logToPage("identify", "Android SDK"); 
+       
+     // if the page is not executing in a webview then call the regular analytics.js track() event
+     } else {
+       
+      // call the Segment analytics.js version of the track call
+      analytics.identify(eventParams); 
+       
+      // write a line to the page indicating that an analytics.js track event was fired
+      logToPage("identify", "analytics.js"); 
+     }
+  }  
+    
   // this function just displays a notice every time an event is fired, and indicates if the event was from analytics.js or Android SDK 
-  function logToPage(platform){
+  function logToPage(eventType, platform){
       var node = document.createElement("p");                 
-      var textnode = document.createTextNode(`${platform} track event fired`);         
+      var textnode = document.createTextNode(`${platform} - ${eventType} event fired`);         
       node.appendChild(textnode);                              
       document.getElementById("messages").appendChild(node); 
   }  
