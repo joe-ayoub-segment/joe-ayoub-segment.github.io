@@ -57,7 +57,7 @@
       // parameters sent to the Native app must be stringified
       eventParams = JSON.stringify(eventParams);
       // call the native app version of the track call
-      // Note: do not include the userId in the native app identify call. The native app will have its own userId
+      // Note: do not include the userId in the native app identify call if the native app already has a userId.
       segment_webview.identify(eventParams)
        
       // write a line to the page indicating that a Segment Android SDK track event was fired
