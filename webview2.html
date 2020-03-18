@@ -20,22 +20,15 @@
   <p>This is a HTML page</p>
   
   <div id="main">
-   <button id="recordTrackEvent" onclick="recordTrackEvent()"> Record Track Event</button> <br/>
-   <button id="recordIdentifyEvent" onclick="recordIdentifyEvent()"> Record Identify Event</button> <br/>
-   <button id="recordPageEvent" onclick="recordPageEvent()"> Record Page Event</button>
+   <button id="recordTrackEvent" onclick="recordTrackEvent('Test Webview Event', {my_property1:6.72, my_property2: "some value", my_property3:245345})"> Record Track Event</button> <br/>
+   <button id="recordIdentifyEvent" onclick="recordIdentifyEvent('userId_0001', {my_trait1:6.72, my_trait2: "some trait valuue", my_trait3:245345})"> Record Identify Event</button> <br/>
+   <button id="recordPageEvent" onclick="recordPageEvent('Homepage', {my_page_property1:6.72, my_page_property2: "some value", my_page_property3:245345})"> Record Page Event</button>
   </div>
   
   <div id="messages"></div>
 
   <script type="text/javascript">
-   function recordTrackEvent(){
-
-     // Segment track event name
-     var eventName = "Test Webview Event";
-     
-     // Segment track event prpoperties
-     var eventParams = {my_property1:6.72, my_property2: "some value", my_property3:245345};
-     
+   function recordTrackEvent(eventname, eventParams){ 
      // if the page is executing in a webview then stringify the parameters and call the webview track() event
      if(typeof segment_webview !== "undefined"){
       // parameters sent to the Nativa app must be stringified
@@ -57,16 +50,14 @@
      }
   }
   
-  function recordIdentifyEvent(){
-     
-     // Segment identify event traits
-     var eventParams = {my_trait1:6.72, my_trait2: "some trait valuue", my_trait3:245345};
+  function recordIdentifyEvent(userId, eventParams){
      
      // if the page is executing in a webview then stringify the parameters and call the webview identify() event
      if(typeof segment_webview !== "undefined"){
       // parameters sent to the Native app must be stringified
       eventParams = JSON.stringify(eventParams);
       // call the native app version of the track call
+      // Note: do not include the userId in the native app identify call. The native app will have its own userId
       segment_webview.identify(eventParams)
        
       // write a line to the page indicating that a Segment Android SDK track event was fired
@@ -75,21 +66,16 @@
      // if the page is not executing in a webview then call the regular analytics.js track() event
      } else {
        
-      // call the Segment analytics.js version of the track call
-      analytics.identify(eventParams); 
+      // call the Segment analytics.js version of the track call. 
+      // Note: include the userId in the analytics.js identify call. 
+      analytics.identify(userId, eventParams); 
        
       // write a line to the page indicating that an analytics.js track event was fired
       logToPage("identify", "analytics.js"); 
      }
   }  
     
-  function recordPageEvent(){
-
-     // Segment track event name
-     var pageName = "Test Page";
-     
-     // Segment page event prpoperties
-     var eventParams = {my_page_property1:6.72, my_page_property2: "some value", my_page_property3:245345};
+  function recordPageEvent(pageName, eventParams){
      
      // if the page is executing in a webview then stringify the parameters and call the webview screen() event
      if(typeof segment_webview !== "undefined"){
