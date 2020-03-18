@@ -82,6 +82,35 @@
      }
   }  
     
+  function recordPageEvent(){
+
+     // Segment track event name
+     var pageName = "Test Page";
+     
+     // Segment page event prpoperties
+     var eventParams = {my_page_property1:6.72, my_page_property2: "some value", my_page_property3:245345};
+     
+     // if the page is executing in a webview then stringify the parameters and call the webview screen() event
+     if(typeof segment_webview !== "undefined"){
+      // parameters sent to the Nativa app must be stringified
+      eventParams = JSON.stringify(eventParams);
+      // call the native app version of the track call
+      segment_webview.screen(pageName, eventParams)
+       
+      // write a line to the page indicating that a Segment Android SDK track event was fired
+      logToPage("screen", "Android SDK"); 
+       
+     // if the page is not executing in a webview then call the regular analytics.js track() event
+     } else {
+       
+      // call the Segment analytics.js version of the track call
+      analytics.page(pageName, eventParams); 
+       
+      // write a line to the page indicating that an analytics.js track event was fired
+      logToPage("page", "analytics.js"); 
+     }
+  }  
+    
   // this function just displays a notice every time an event is fired, and indicates if the event was from analytics.js or Android SDK 
   function logToPage(eventType, platform){
       var node = document.createElement("p");                 
