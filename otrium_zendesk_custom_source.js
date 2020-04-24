@@ -19,6 +19,8 @@ async function onRequest(request, settings) {
 	let ticket_requester_external_id = eventBody.ticket_requester_external_id;
 	let ticket_tags = eventBody.ticket_tags.split(' ');
 
+  let x = 10;
+
 	// Create an anonymousIs from the Zendesk email address
 	let buff = new Buffer(ticket_requester_email);
 	let anonymousId = buff.toString('base64');
