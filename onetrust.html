@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <title>OneTrust Consent Demo</title>
-    <script src="https://cdn.cookielaw.org/consent/076207ce-7604-4564-996c-fda402c17882.js" type="text/javascript"
-        charset="UTF-8"></script>
+    <script src="https://cdn.cookielaw.org/consent/076207ce-7604-4564-996c-fda402c17882.js" type="text/javascript" charset="UTF-8"></script>
     
-   
+    <script src="https://joe-ayoub-segment.github.io/onetrust.js" type="text/javascript" charset="UTF-8"></script>
     
 </head>
 
@@ -18,33 +17,7 @@
     <span>hello world 1</span>
     
     <div id="root"></div>
-    
-     <script>
-       async function fetchDestinationForWriteKey(writeKey) {
-
-            // To get currently enabled integrations, execute HTTP get to:
-            // https://gist.github.com/sperand-io/4725e248a35d5005d68d810d8a8f7b29#file-granulardecision-js-L145
-            var res = await window.fetch(
-              `https://cdn.segment.com/v1/projects/${writeKey}/integrations`
-            );
-
-            const destinations = await res.json();
-
-            // Rename creationName to id to abstract the weird data model
-            for (const destination of destinations) {
-              destination.id = destination.creationName;
-              delete destination.creationName;
-            }
-
-            return destinations;
-        }
-
-        var enabledIntegrations = await fetchDestinationForWriteKey(
-            'ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5'
-        );
-
-    </script>
-    
+   
 </body>
 
 </html>
