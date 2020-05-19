@@ -14,6 +14,8 @@ async function fetchDestinationForWriteKey(writeKey) {
     return destinations;
 }
 
-var enabledIntegrations = await fetchDestinationForWriteKey(
-    'ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5'
-);  
+fetchDestinationForWriteKey('ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5').then((enabledIntegrations)=>{ 
+
+    console.log(enabledIntegrations);
+    
+});  
