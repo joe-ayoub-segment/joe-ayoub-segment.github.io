@@ -18,7 +18,7 @@ fetchDestinationForWriteKey('ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5').then((enabledInt
 
     const oneTrustGroupIds = oneTrustUtil.getConsentGroupIds();
     
-    const consentedIntegrations = await getConsentedIntegrations(
+    const consentedIntegrations = getConsentedIntegrations(
       enabledIntegrations,
       oneTrustGroupIds
     );    
