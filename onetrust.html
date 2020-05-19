@@ -8,6 +8,32 @@
     <title>OneTrust Consent Demo</title>
     <script src="https://cdn.cookielaw.org/consent/076207ce-7604-4564-996c-fda402c17882.js" type="text/javascript"
         charset="UTF-8"></script>
+    
+    <script type="text/javascript">
+        async function fetchDestinationForWriteKey(writeKey) {
+
+            // To get currently enabled integrations, execute HTTP get to:
+            // https://gist.github.com/sperand-io/4725e248a35d5005d68d810d8a8f7b29#file-granulardecision-js-L145
+            const res = await window.fetch(
+              `https://cdn.segment.com/v1/projects/${writeKey}/integrations`
+            );
+
+            const destinations = await res.json();
+
+            // Rename creationName to id to abstract the weird data model
+            for (const destination of destinations) {
+              destination.id = destination.creationName;
+              delete destination.creationName;
+            }
+
+            return destinations;
+        }
+
+        const enabledIntegrations = await fetchDestinationForWriteKey(
+            'ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5'
+        );
+    </script>
+    
 </head>
 
 <body>
