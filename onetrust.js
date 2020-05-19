@@ -53,7 +53,7 @@ const ONE_TRUST_SEGMENT_MAPPING = {
   C006: null, // Not mapped currently.
 };
 
-async function getConsentedIntegrations(enabledIntegrations, oneTrustGroupIds) {
+function getConsentedIntegrations(enabledIntegrations, oneTrustGroupIds) {
   // Get consented segment categories.
   const segmentCategories = oneTrustGroupIds
     .map(oneTrustGroupId => ONE_TRUST_SEGMENT_MAPPING[oneTrustGroupId])
