@@ -30,3 +30,36 @@ const oneTrustUtil = {
     return groupIds;
   },
 };
+
+const ONE_TRUST_SEGMENT_MAPPING = {
+  /* Strictly Necessary Cookies */
+  C0001: null, // These do not map to any categories in segment.
+  /* Performance Cookies */
+  C0002: 'Analytics',
+  /* Functional Cookies*/
+  C0003: 'A/B Testing',
+  /* Targeting Cookies */
+  C0004: null, // Not mapped currently.
+  /* Social Media Cookies */
+  C0005: null, // Not mapped currently.
+  /* Custom Cookie Category */
+  C006: null, // Not mapped currently.
+};
+
+async function getConsentedIntegrations(enabledIntegrations, oneTrustGroupIds) {
+  // Get consented segment categories.
+  const segmentCategories = oneTrustGroupIds
+    .map(oneTrustGroupId => ONE_TRUST_SEGMENT_MAPPING[oneTrustGroupId])
+    .filter(segmentCategory => segmentCategory); // Filter out `null` mappings.
+
+  // Filter enabled integrations by consented segment categories.
+  const consentedIntegrations = enabledIntegrations.filter(
+    enabledIntegration => {
+      const isConsented = segmentCategories.includes(
+        enabledIntegration.category
+      );
+      return isConsented;
+    }
+  );
+  return consentedIntegrations;
+}
