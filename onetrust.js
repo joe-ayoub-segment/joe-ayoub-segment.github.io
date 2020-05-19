@@ -16,8 +16,15 @@ async function fetchDestinationForWriteKey(writeKey) {
 
 fetchDestinationForWriteKey('ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5').then((enabledIntegrations)=>{ 
 
-    console.log(enabledIntegrations);
+    const oneTrustGroupIds = oneTrustUtil.getConsentGroupIds();
     
+    const consentedIntegrations = await getConsentedIntegrations(
+      enabledIntegrations,
+      oneTrustGroupIds
+    );    
+
+    console.log(enabledIntegrations);
+    console.log(consentedIntegrations);
 });  
 
 
