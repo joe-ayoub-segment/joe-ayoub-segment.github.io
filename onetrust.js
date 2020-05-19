@@ -19,3 +19,14 @@ fetchDestinationForWriteKey('ReFiwPrbWdGBhNpcBOHMN5F42SxoIXT5').then((enabledInt
     console.log(enabledIntegrations);
     
 });  
+
+
+const oneTrustUtil = {
+  getConsentGroupIds() {
+    const groupIds = (window.OnetrustActiveGroups
+      ? window.OnetrustActiveGroups.split(',')
+      : []
+    ).filter(a => a);
+    return groupIds;
+  },
+};
