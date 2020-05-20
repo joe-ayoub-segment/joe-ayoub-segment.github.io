@@ -1,3 +1,9 @@
+window.onload = function() {
+  window.OptanonWrapper = function() {
+    console.log('OptanonWrapper fired');
+  }  
+};
+
 async function fetchDestinationForWriteKey(writeKey) {
 
     var res = await window.fetch(
