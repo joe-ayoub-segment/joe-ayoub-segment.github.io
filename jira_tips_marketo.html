@@ -1,162 +1,17 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-    <title>JIRA tips</title> 
-
+    <title>Marketo test page</title> 
     <script>
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-      analytics.load("xPRyQU4wbD3mVZs5eRpxhYz07a2lZmG6"); // Joe usual Write Key
-     
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("xPRyQU4wbD3mVZs5eRpxhYz07a2lZmG6");
+      analytics.page();
       }}();
     </script>
+   
 
 </head> 
 <body> 
-<ul>
-    <li>
-        <a href="https://joe-ayoub-segment.github.io/home.html">Home</a>
-    </li>
-    <li>
-        <a href="https://joe-ayoub-segment.github.io/sign_up.html">Sign up</a>
-    </li>
-    <li>
-        <a href="https://joe-ayoub-segment.github.io/video_tutorials.html">Confluece Video tutorials</a>
-    </li> 
-    <li>
-       <a href="https://joe-ayoub-segment.github.io/jira_tips.html">JIRA tips</a>
-    </li>
-    <li>    
-        <a href="https://joe-ayoub-segment.github.io/project_management.html">Project Management</a>
-    </li>
-    <li>
-        <a href="https://joe-ayoub-segment.github.io/collaboration_best_practices.html">Collaboration best practices</a>
-    </li>
-</ul>
-    
-<h1>This is a test HTML page with Segment installed</h1> 
-<p>This is a test HTML page with the Segment snippet installed</p>  
-  
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-<div style="border:1px solid #CCC;">  
-    <form name="register" onsubmit="fire_events(event)">
-        If you enjoyed this content then register for the JIRA tips course 
-        <input type="hidden" name="course_type" value="JIRA tips course"/>
-        <br/>
-        <br/>
-        Full name
-        <input name="full_name" required="" size="81" type="text"/>
-        <br/>  
-        <br/>
-        Email
-        <input name="email" required="" size="81" type="text"/>
-        <br/>  
-        <br/>
-        <input name="submit" type="submit" value="submit"/>
-    </form> 
 
-    <script type="text/javascript">
-      function fire_events(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var full_name = form["full_name"].value;
-        var course_type = form["course_type"].value;       
-        var user = {
-            email: email, 
-            full_name: full_name, 
-            course_type: course_type
-        };
-        analytics.identify(user.full_name + '_id', {
-            email: user.email, 
-            full_name: user.full_name 
-        });
-        analytics.track('Course Registered', {
-          course_type: user.course_type
-        });
-        alert('done');
-      }
-    </script>  
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-</div>  
-    
-<div style="border:1px solid #CCC;">    
-    <form name="order" onsubmit="submit_order(event)">
-        Buy the JIRA tips course now!
-        <br/>
-        <br/>
-        <input type="hidden" name="order_id" value=""/>
-        <input type="hidden" name="product_id" value="prod_1_id"/>
-        <input type="hidden" name="product_name" value="JIRA tips course"/>
-        <br/>
-        <br/>
-        Course duration
-        <select name="course_duration">
-          <option value="2 weeks">2 weeks</option>
-          <option value="4 weeks">4 weeks</option>
-          <option value="6 weeks">6 weeks</option>
-          <option value="8 weeks">8 weeks</option>
-        </select>
-        <br/>
-        <br/>
-        Full name
-        <input name="full_name" required="" size="81" type="text"/>
-        <br/>  
-        <br/>
-        Email
-        <input name="email" required="" size="81" type="text"/>
-        <br/>  
-        <br/>
-        <input name="submit" type="submit" value="Complete order"/>
-    </form>
-
-    <script type="text/javascript">
-      function submit_order(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var full_name = form["full_name"].value;
-        var order_id = Math.floor((Math.random() * 10000) + 1);   
-        var product_id = form["product_id"].value;  
-        var product_name = form["product_name"].value;  
-        var course_duration = form["course_duration"].options[form["course_duration"].selectedIndex].text;  
-        var product_price = 10;
-        if(course_duration == '4 weeks') {product_price = 20;}
-        if(course_duration == '6 weeks') {product_price = 30;}
-        if(course_duration == '8 weeks') {product_price = 40;}
-        
-          var user = {
-            email: email, 
-            full_name: full_name
-        };
-        analytics.identify(user.full_name + '_id', {
-            email: user.email, 
-            full_name: user.full_name 
-        });
-        analytics.track('Order Completed', {
-            order_id: order_id,
-            xxx: 'custom_dimension',
-            products: [ {
-                id: product_id,
-                name: product_name,
-                course_duration: course_duration,
-                price: product_price
-                },{
-                id: product_id + '_p2',
-                name: product_name + '_p2',
-                course_duration: course_duration + '_p2',
-                price: product_price + 15
-                }
-            ]
-        });
-        alert('done');
-      }
-    </script>  
-</div>  
 </body> 
 </html>
