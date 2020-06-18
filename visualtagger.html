@@ -12,6 +12,9 @@
 </head> 
 <body> 
 
+    
+<section>
+<h2>Can Visual Tagger capture events from internal and external links?</h2>
 <ul>
     <li>
         <a href="https://joe-ayoub-segment.github.io/home.html">This is an internal link</a>
@@ -20,39 +23,45 @@
         <a href="https://joe-ayoub-segment.github.io/sign_up.html">This is an external link</a>
     </li>
 </ul>
+</section>    
+    
+<section>
+<h2>Can Visual Tagger capture events from a form?</h2>    
+    <form accept-charset="UTF-8" method="post" action="https://www.google.com" class="form" id="testform">
+
+         <label for="first_name">First Name</label>
+         <input type="text" name="first_name" id="first_name" value="test" class="text" size="30" maxlength="40" onchange="" onfocus="">
+
+         <label for="last_name">Last Name</label>
+         <input type="text" name="last_name" id="504501_63396pi_504501_63396" value="test" class="text" size="30" maxlength="80" onchange="" onfocus="">
+
+
+         <label for="work_email">Work Email</label>
+         <input type="text" name="work_email" id="work_email" value="jsimmons@sandyfordmotors.com" class="text" size="30" maxlength="255" onfocus="">
+
+         <label class="field-label" for="company_name">Company Name</label>
+         <input type="text" name="company_name" id="company_name" value="Test" class="text" size="30" maxlength="255" onchange="" onfocus="">
+
+
+         <label for="comments">Comments</label>
+         <input type="text" name="comments" id="comments">
+
+         <input type="submit" value="Request a Demo">
+
+    </form>
+</section>
+    
+<section>
+  <h2>Can Visual Tagger capture events from a form?</h2>  
+    <div class="tab-container">
+        <span> these li elements are not links, but we need to test if we can trigger Segment events when they are clicked</span>
+        <ul class="tabs">
+            <li class="tab-link current" data-tab="tab-1">Sales Sequences</li>
+            <li class="tab-link" data-tab="tab-2">Multi-Channel Communication</li>
+            <li class="tab-link" data-tab="tab-3">Personalization</li>
+        </ul>
+    </div>
+</section>
  
-<form accept-charset="UTF-8" method="post" action="https://www.google.com" class="form" id="testform">
-
-     <label for="first_name">First Name</label>
-     <input type="text" name="first_name" id="first_name" value="test" class="text" size="30" maxlength="40" onchange="" onfocus="">
-
-     <label for="last_name">Last Name</label>
-     <input type="text" name="last_name" id="504501_63396pi_504501_63396" value="test" class="text" size="30" maxlength="80" onchange="" onfocus="">
-
-
-     <label for="work_email">Work Email</label>
-     <input type="text" name="work_email" id="work_email" value="jsimmons@sandyfordmotors.com" class="text" size="30" maxlength="255" onfocus="">
-
-     <label class="field-label" for="company_name">Company Name</label>
-     <input type="text" name="company_name" id="company_name" value="Test" class="text" size="30" maxlength="255" onchange="" onfocus="">
-
-
-     <label for="comments">Comments</label>
-     <input type="text" name="comments" id="comments">
-
-     <input type="submit" value="Request a Demo">
-     
-</form>
-
-<div class="tab-container">
-    <span> these li elements are not links, but we need to test if we can trigger Segment events when they are clicked</span>
-    <ul class="tabs">
-        <li class="tab-link current" data-tab="tab-1">Sales Sequences</li>
-        <li class="tab-link" data-tab="tab-2">Multi-Channel Communication</li>
-        <li class="tab-link" data-tab="tab-3">Personalization</li>
-    </ul>
-</div>
-
-</div>  
 </body> 
 </html>
