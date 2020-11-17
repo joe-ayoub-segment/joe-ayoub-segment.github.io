@@ -1,0 +1,125 @@
+<html>
+<head>
+<title></title>
+
+<script>
+/* 
+ * This Javascript code should be placed just under the Segment Javascript snippet for all Danske Spil websites 
+ * which need to send data into Segment. 
+ * 
+ * Description: 
+ *  
+ *   The Segment Querysting API does not support mapping querystring values to externalIds. To work around this, the code works in 
+ *   much the same way as the Querystring API, except that it maps specific querystring values to extneralIds. 
+ *  
+ *   A querysting parameter named dli_eloqua_contact_id will be mapped to an externalId called dli_eloqua_contact_id
+ *   A querysting parameter named dlo_eloqua_contact_id will be mapped to an externalId called dlo_eloqua_contact_id
+ * 
+ *   All other querystring parameters that start with 'properties.' will be mapped to properties in the track call
+ * 
+ * Configuration settings: 
+ *  
+ *   The Segment Writekey for the Segment Source needs to be provided in the analytics.load() event. 
+ *   Search for <SEGMENT_SOURCE_WRITE_KEY> in this document and replace it with the relevant Writekey string
+ *   e.g. analytics.load('On0RZgXz4JIrshIr0P7aDCma8G2Abyt1');
+ *   
+ *   These values are: 
+ *   ___________________________________________________________________________________
+ *   |            SOURCE NAME                      |          WRITEKEY                  |            
+ *   |    Stage - Danskespil front end - DLI       |  On0RZgXz4JIrshIr0P7aDCma8G2Abyt1  |
+ *   |    Stage - Danskespil front end - DLO       |  XWFglhfYa3vypf4oOygtHR7kKgAU6i1S  | 
+ *   |    Stage - Danskespil front end - Global    |  K7hLM8NdUjDAwOG34UdeSf9vGdcoA884  |  
+ *   |    Prod - Danskespil front end - DLI        |  kf3FZyAdcAPX7rqiW1okZvFeq7KMIbsN  | 
+ *   |    Prod - Danskespil front end - DLO        |  wUTFPvpd24BOVX0AGVG460Zzj3pilypU  | 
+ *   |    Prod - Danskespil front end - Global     |  eNCHNZcRky4fQb5G8zRj0oPpu1EhTjTe  | 
+ *   ___________________________________________________________________________________
+ * 
+ * Valid Quesytring parameters: 
+ *   
+ *   1. dlo_eloqua_contact_id - will map to a Segment extnernalId of type dlo_eloqua_contact_id
+ *   2. dli_eloqua_contact_id - will map to a Segment extnernalId of type dli_eloqua_contact_id
+ *   3. event - the name of the event to trigger. e.g. 'Email%20Clicked' will fire a track() event called 'Email Clicked'
+ *   4. properties.XXXXX - will create a property in the track event named XXXXX. Replace XXXXX with whatever you like. for example: 
+ *          properties.utm_source=DLI_ELOQUA_EMAIL
+ *          properties.utm_campaign=XMAS_CAMPAIGN_NAME
+ *          properties.email_template_name = EMAIL_TEMPLATE_NAME_1
+ *    
+ *   5. All other querystring parameters will be ignored
+ *  
+ * Example Querystring: 
+ *   
+ *  <a href="https://danskespil.dk/oddset?
+ *      dlo_eloqua_contact_id=DLI_ELOQUA_CONTACT_ID
+ *      &event=Email%20Clicked
+ *      &properties.utm_campaign=XMAS_CAMPAIGN_NAME
+ *      &properties.utm_source=DLI_ELOQUA_EMAIL
+ *      &properties.email_template_name=EMAIL_TEMPLATE_NAME_1"
+ *      >click this link to send Email Clicked events to Segment for DLI</a>
+ * 
+ */
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+    analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
+}}();
+
+var seg_ds = {
+
+    // Fire track() call based on values from Querystring 
+    firePageLoadEvents: function() {
+        
+        this.firePageEvent();
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        let dlo_eloqua_contact_id = urlParams.get('dlo_eloqua_contact_id');
+        let dli_eloqua_contact_id = urlParams.get('dli_eloqua_contact_id');
+        let event = urlParams.get('event');
+        let externalIds = [];
+
+        if(dlo_eloqua_contact_id){
+            externalIds.push({
+                "collection": "users",
+                "encoding": "none",
+                "id": dlo_eloqua_contact_id,
+                "type": "dlo_eloqua_contact_id" 
+            })
+        }
+
+        if(dli_eloqua_contact_id){
+            externalIds.push({
+                "collection": "users",
+                "encoding": "none",
+                "id": dli_eloqua_contact_id,
+                "type": "dli_eloqua_contact_id" 
+            })
+        }
+        
+        if(event && externalIds.length>0) {
+            let properties = {};
+
+            for(var q of urlParams.entries()) {
+               if(q[0].startsWith('properties.'))
+                properties[ q[0].replace('properties.','')] = q[1]
+            }
+
+            analytics.track(event, properties, {externalIds});
+        }
+    }, 
+    firePageEvent: function() {
+        analytics.page();
+    }
+
+};
+analytics.ready(
+    seg_ds.firePageLoadEvents()
+);
+</script>
+
+</head>
+
+
+<body>
+
+
+</body>
+
+</html>
