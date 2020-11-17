@@ -40,30 +40,27 @@
  *   2. dli_eloqua_contact_id - will map to a Segment extnernalId of type dli_eloqua_contact_id
  *   3. event - the name of the event to trigger. e.g. 'Email%20Clicked' will fire a track() event called 'Email Clicked'
  *   4. properties.XXXXX - will create a property in the track event named XXXXX. Replace XXXXX with whatever you like. for example: 
- *          properties.utm_source=DLI_ELOQUA_EMAIL
- *          properties.utm_campaign=XMAS_CAMPAIGN_NAME
  *          properties.email_template_name = EMAIL_TEMPLATE_NAME_1
- *    
+ *          properties.utm_campaign = xmas
  *   5. All other querystring parameters will be ignored
  *  
  * Example Querystring: 
  *   
  *  <a href="https://danskespil.dk/oddset?
- *      dlo_eloqua_contact_id=DLI_ELOQUA_CONTACT_ID
+ *      dli_eloqua_contact_id=DLI_ELOQUA_CONTACT_ID
  *      &event=Email%20Clicked
- *      &properties.utm_campaign=XMAS_CAMPAIGN_NAME
- *      &properties.utm_source=DLI_ELOQUA_EMAIL
+ *      &properties.utm_campaign=xmas
+ *      &properties.utm_source=email
  *      &properties.email_template_name=EMAIL_TEMPLATE_NAME_1"
  *      >click this link to send Email Clicked events to Segment for DLI</a>
  * 
  */
 !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
-    analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
+    analytics.load('<SEGMENT_SOURCE_WRITE_KEY>');
 }}();
 
 var seg_ds = {
 
-    // Fire track() call based on values from Querystring 
     firePageLoadEvents: function() {
         
         this.firePageEvent();
@@ -74,6 +71,7 @@ var seg_ds = {
         let dli_eloqua_contact_id = urlParams.get('dli_eloqua_contact_id');
         let event = urlParams.get('event');
         let externalIds = [];
+
 
         if(dlo_eloqua_contact_id){
             externalIds.push({
@@ -95,13 +93,17 @@ var seg_ds = {
         
         if(event && externalIds.length>0) {
             let properties = {};
+            let campaign = {};
 
             for(var q of urlParams.entries()) {
                if(q[0].startsWith('properties.'))
                 properties[ q[0].replace('properties.','')] = q[1]
+               
+               if(q[0].startsWith('properties.utm_'))
+                campaign[ q[0].replace('properties.utm_','')] = q[1]
             }
 
-            analytics.track(event, properties, {externalIds});
+            analytics.track(event, properties, {campaign, externalIds});
         }
     }, 
     firePageEvent: function() {
