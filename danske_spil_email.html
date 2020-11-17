@@ -99,7 +99,7 @@ var seg_ds = {
                 properties[ q[0].replace('properties.','')] = q[1]
             }
 
-            analytics.track(event, properties, {campaign, externalIds});
+            analytics.track(event, properties, {externalIds});
         }
     }, 
     firePageEvent: function() {
