@@ -93,14 +93,10 @@ var seg_ds = {
         
         if(event && externalIds.length>0) {
             let properties = {};
-            let campaign = {};
 
             for(var q of urlParams.entries()) {
                if(q[0].startsWith('properties.'))
                 properties[ q[0].replace('properties.','')] = q[1]
-               
-               if(q[0].startsWith('properties.utm_'))
-                campaign[ q[0].replace('properties.utm_','')] = q[1]
             }
 
             analytics.track(event, properties, {campaign, externalIds});
