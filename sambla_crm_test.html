@@ -4,25 +4,24 @@
 
 <script>
     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1"; 
-     analytics.load("TV1nZtHyum1bmGryrJ3WDfkfj1SDf1JA");
+    analytics.load("TV1nZtHyum1bmGryrJ3WDfkfj1SDf1JA");
+
     /*
-        NOTE: ensure you remove the page() event from the Segment Javascript snippet. 
-        We don't want to fire any event until after we've set the anonymousId 
-        value to the hash of the email address.
+    Make sure you comment out any page() events from the Javascript snippet. 
+    We don't want any event to fire before we overwrite the anonymousId with a hash of the email
     */
-    //analytics.page()
+    //analytics.page
     }}();
  
 
-    var seg_sambla = {
-        
-        fireEvent: function() {      
+    // Wait until the Segment library has initialized before firing any Segment events. 
+    analytics.ready(
+        function init(){
             
-            let email = 'joe1234542345@segment.com';
+            let email = 'mary@999gmail.com';
 
-            // Set the anonymousId to be the hash of the email address. 
-            // It's important to do this before we trigger any Segment events
-            analytics.user().anonymousId('btoa(email)');      
+            // Overwrite the default anonymousId with a hash of the user's email
+            analytics.user().anonymousId(btoa(email));
             
             // fire a track event. This event should leave the browser as it does have an email address in the payload. 
             analytics.track("Paid Out Loan", {
@@ -34,25 +33,14 @@
                     email: email
                 }
             });
-            console.log('track() event fired...')
+            
         }
-    };
-
-    // Wait until the Segment library has initialized before firing any Segment events. 
-    analytics.ready(
-        seg_sambla.fireEvent()
     );
 
   </script>
 
 </head>
-
-
-<body>
-
-
-</body>
-
+<body></body>
 </html>
 
 
