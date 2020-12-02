@@ -1,4 +1,8 @@
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
 <head>
     <title>Example form</title>
 
@@ -8,53 +12,7 @@
         }}();
     </script>
 
-    <script>
 
-        var segment_purdue = {
-            // Fire identify() call to Segment
-            getFormProperties: function() {
-                alert('5');
-                let properties = {
-                    form_name : this.getInputValueById('form_name')
-                }
-
-                return properties;
-
-            },
-            getFormTraits: function() {
-                alert('7');
-                let traits = {
-                    first_name : this.getInputValueById('form-first_name'),
-                    last_name : this.getInputValueById('form-last_name'),
-                    email : this.getInputValueById('form-email'),
-                    address : {
-                        street : this.getInputValueById('form-street'),
-                        city : this.getInputValueById('form-city'),
-                        phone : this.getInputValueById('form-phone'),
-                        postalCode : this.getInputValueById('form-zip_code'),
-                        country : this.getInputValueByClass('form-form-country') 
-                    }
-                };
-
-                return traits;
-            },
-            formSubmitted: function(event){
-
-                event.preventDefault();
-                analytics.track('Form Submitted', this.getFormProperties());
-                analytics.identify(this.getFormTraits());
-            },
-            // Call this function upon form submit
-            init: function() {
-                var form = document.getElementById("form_1");
-                alert(form);
-                form.onsubmit = this.formSubmitted.bind(form);
-            }
-        };
-        analytics.ready(
-            segment_purdue.init()
-        );
-    </script>
 </head>
 
 <body>
@@ -78,6 +36,56 @@
         </ul>
         <input type="submit" value="Submit" id="button_1">
     </form>
+
+
+    <script>
+
+        var segment_purdue = {
+            // Fire identify() call to Segment
+            getFormProperties: function() {
+                alert('5');
+                let properties = {
+                    form_name : this.getInputValueById('form_name')
+                }
+        
+                return properties;
+        
+            },
+            getFormTraits: function() {
+                alert('7');
+                let traits = {
+                    first_name : this.getInputValueById('form-first_name'),
+                    last_name : this.getInputValueById('form-last_name'),
+                    email : this.getInputValueById('form-email'),
+                    address : {
+                        street : this.getInputValueById('form-street'),
+                        city : this.getInputValueById('form-city'),
+                        phone : this.getInputValueById('form-phone'),
+                        postalCode : this.getInputValueById('form-zip_code'),
+                        country : this.getInputValueByClass('form-form-country') 
+                    }
+                };
+        
+                return traits;
+            },
+            formSubmitted: function(event){
+        
+                event.preventDefault();
+                analytics.track('Form Submitted', this.getFormProperties());
+                analytics.identify(this.getFormTraits());
+            },
+            // Call this function upon form submit
+            init: function() {
+                var form = document.getElementById("form_1");
+                form.onsubmit = this.formSubmitted.bind(form);
+            }
+        };
+        analytics.ready(
+            segment_purdue.init()
+        );
+        
+        
+        </script>
 
 </body>
 
