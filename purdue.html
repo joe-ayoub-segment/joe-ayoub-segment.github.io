@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+    <title>Example form</title>
+
+    <script>
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+        analytics.load("f0mkFrd38lR8LW97t73odW9VkiQP532m");
+        }}();
+    </script>
+
+    <script>
+
+        var segment_purdue = {
+            // Fire identify() call to Segment
+            getFormProperties: function() {
+                alert('5');
+                let properties = {
+                    form_name : this.getInputValueById('form_name')
+                }
+
+                return properties;
+
+            },
+            getFormTraits: function() {
+                alert('7');
+                let traits = {
+                    first_name : this.getInputValueById('form-first_name'),
+                    last_name : this.getInputValueById('form-last_name'),
+                    email : this.getInputValueById('form-email'),
+                    address : {
+                        street : this.getInputValueById('form-street'),
+                        city : this.getInputValueById('form-city'),
+                        phone : this.getInputValueById('form-phone'),
+                        postalCode : this.getInputValueById('form-zip_code'),
+                        country : this.getInputValueByClass('form-form-country') 
+                    }
+                };
+
+                return traits;
+            },
+            formSubmitted: function(event){
+
+                event.preventDefault();
+                analytics.track('Form Submitted', this.getFormProperties());
+                analytics.identify(this.getFormTraits());
+            },
+            // Call this function upon form submit
+            init: function() {
+                var form = document.getElementById("form_1");
+                form.onsubmit = this.formSubmitted.bind(form);
+            }
+        };
+        analytics.ready(
+            segment_purdue.init()
+        );
+    </script>
+</head>
+
+<body>
+
+    <div class="action_sidebar">
+    <h4>Sign up</h4>
+    <form accept-charset="UTF-8" id="form_1" method="post"  >
+    
+        <input type="hidden" name="form_name" value="test form">
+
+        <ul>
+            <li><label for="form_name">first name</label><input type="text" name="form-first_name" value=""></li>
+            <li><label for="form_name">last name</label><input type="text" name="form-last_name" value=""></li>
+            <li><label for="form_name">email</label><input type="text" name="form-email" value=""></li>
+            <li><label for="form_name">street</label><input type="text" name="form-street" value=""></li>
+            <li><label for="form_name">city</label><input type="text" name="form-city" value=""></li>
+            <li><label for="form_name">phone</label><input type="text" name="form-phone" value=""></li>
+            <li><label for="form_name">zipcode</label><input type="text" name="form-zip_code" value=""></li>
+            <li><label for="form_name">coutry</label><input type="text" name="form-form-country" value=""></li>
+
+        </ul>
+        <input type="submit" value="Submit" id="button_1">
+    </form>
+
+</body>
+
+</html>
