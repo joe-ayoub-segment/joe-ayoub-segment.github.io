@@ -47,6 +47,7 @@
             // Call this function upon form submit
             init: function() {
                 var form = document.getElementById("form_1");
+                alert(form);
                 form.onsubmit = this.formSubmitted.bind(form);
             }
         };
