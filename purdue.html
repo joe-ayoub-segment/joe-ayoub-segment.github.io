@@ -71,7 +71,7 @@
             formSubmitted: function(event){
         
                 event.preventDefault();
-                analytics.track('Form Submitted', this.getFormProperties());
+                analytics.track('Form Submitted', {});
                 analytics.identify(this.getFormTraits());
             },
             // Call this function upon form submit
