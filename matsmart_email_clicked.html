@@ -45,7 +45,7 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
     next(payload);
 };
 
-analytics.addSourceMiddleware(this.emarsysIdMiddleware());
+analytics.addSourceMiddleware(emarsysIdMiddleware);
     </script>
 
 </head>
