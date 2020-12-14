@@ -24,7 +24,7 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
 
     let externalIds = payload.obj.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
 
-    console.log(`externalIds = ${externalIds}`);
+    console.log(`externalIds = ${JSON.stringify(externalIds)}`);
 
     if(emarsys_id_1 && !externalIds.some(externalId => externalId.type === "emarsys_id_1"))
         externalIds.push({
