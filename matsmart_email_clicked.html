@@ -8,6 +8,8 @@
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
 }}();
 
+        
+        
 var emarsysIdMiddleware = function({ payload, next, integrations }) {
     
     console.log('Middleware called');
@@ -22,7 +24,7 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
     console.log(`emarsys_id_2 = ${emarsys_id_2}`);
     console.log(`emarsys_id_3 = ${emarsys_id_3}`);
 
-    let externalIds = payload.obj.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
+    let externalIds = payload.obj.context.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
 
     console.log(`externalIds = ${JSON.stringify(externalIds)}`);
 
@@ -54,11 +56,15 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
             "id": emarsys_id_3,
             "type": "emarsys_id_3" 
         })
-payload.obj.externalIds = externalIds;
+
+    payload.obj.context.externalIds = externalIds;
+
     next(payload);
 };
 
 analytics.addSourceMiddleware(emarsysIdMiddleware);
+        
+        
     </script>
 
 </head>
