@@ -54,7 +54,7 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
             "id": emarsys_id_3,
             "type": "emarsys_id_3" 
         })
-
+payload.obj.externalIds = externalIds;
     next(payload);
 };
 
