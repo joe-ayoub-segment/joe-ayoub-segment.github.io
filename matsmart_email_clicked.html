@@ -26,6 +26,8 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
 
     console.log(`externalIds = ${JSON.stringify(externalIds)}`);
 
+     console.log(externalIds.some(externalId => externalId.type === "emarsys_id_1"));
+    
     if(emarsys_id_1 && !externalIds.some(externalId => externalId.type === "emarsys_id_1"))
         externalIds.push({
             "collection": "users",
