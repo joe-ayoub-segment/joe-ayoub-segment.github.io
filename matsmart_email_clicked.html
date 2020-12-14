@@ -9,7 +9,6 @@
 }}();
 
         
-        
 var emarsysIdMiddleware = function({ payload, next, integrations }) {
     
     console.log('Middleware called');
@@ -24,7 +23,7 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
     console.log(`emarsys_id_2 = ${emarsys_id_2}`);
     console.log(`emarsys_id_3 = ${emarsys_id_3}`);
 
-    let externalIds = payload.obj.context.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
+    let externalIds = payload.obj.context.hasOwnProperty('externalIds') ? payload.obj.context.externalIds : [];
 
     console.log(`externalIds = ${JSON.stringify(externalIds)}`);
 
