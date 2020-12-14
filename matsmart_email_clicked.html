@@ -5,6 +5,8 @@
 
     <script>
         
+       
+        
         var seg_matsmart = {
     addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
             
@@ -48,7 +50,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         let eventName = urlParams.get('event');
         if(eventName && eventName.length > 0)
-            analytic.track(eventName);
+            analytics.track(eventName);
     }
 }
 
@@ -57,7 +59,6 @@
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEmailClicked();
 }}();
-        
         
         
     </script>
