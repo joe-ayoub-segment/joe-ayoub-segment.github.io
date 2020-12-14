@@ -16,7 +16,13 @@ var emarsysIdMiddleware = function({ payload, next, integrations }) {
     let emarsys_id_2 = urlParams.get('emarsys_id_2');
     let emarsys_id_3 = urlParams.get('emarsys_id_3');
 
+    console.log(`emarsys_id_1 = ${emarsys_id_1}`);
+    console.log(`emarsys_id_2 = ${emarsys_id_2}`);
+    console.log(`emarsys_id_3 = ${emarsys_id_3}`);
+
     let externalIds = payload.obj.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
+
+    console.log(`externalIds = ${externalIds}`);
 
     if(emarsys_id_1 && !externalIds.some(externalId => externalId.type === "emarsys_id_1"))
         externalIds.push({
