@@ -10,6 +10,8 @@
 
 var emarsysIdMiddleware = function({ payload, next, integrations }) {
     
+    console.log('Middleware called');
+    
     const urlParams = new URLSearchParams(window.location.search);
         
     let emarsys_id_1 = urlParams.get('emarsys_id_1');
