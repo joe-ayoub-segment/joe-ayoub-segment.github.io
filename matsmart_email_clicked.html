@@ -4,55 +4,48 @@
     <title>Kitchen sink form</title>
 
     <script>
-    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
-        analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
-    }}();
+ !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+    analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
+}}();
 
-    var seg_matsmart = {
+var emarsysIdMiddleware = function({ payload, next, integrations }) {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+        
+    let emarsys_id_1 = urlParams.get('emarsys_id_1');
+    let emarsys_id_2 = urlParams.get('emarsys_id_2');
+    let emarsys_id_3 = urlParams.get('emarsys_id_3');
 
-        emarsysIdMiddleware: function({ payload, next, integrations }) {
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            let emarsys_id_1 = urlParams.get('emarsys_id_1');
-            let emarsys_id_2 = urlParams.get('emarsys_id_2');
-            let emarsys_id_3 = urlParams.get('emarsys_id_3');
+    let externalIds = payload.obj.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
 
-            let externalIds = payload.obj.hasOwnProperty('externalIds') ? payload.obj.externalIds : [];
+    if(emarsys_id_1 && !externalIds.some(externalId => externalId.type === "emarsys_id_1"))
+        externalIds.push({
+            "collection": "users",
+            "encoding": "none",
+            "id": emarsys_id_1,
+            "type": "emarsys_id_1" 
+        })
+    
+    if(emarsys_id_2 && !externalIds.some(externalId => externalId.type === "emarsys_id_2"))
+        externalIds.push({
+            "collection": "users",
+            "encoding": "none",
+            "id": emarsys_id_2,
+            "type": "emarsys_id_2" 
+        })
+    
+    if(emarsys_id_3 && !externalIds.some(externalId => externalId.type === "emarsys_id_3"))
+        externalIds.push({
+            "collection": "users",
+            "encoding": "none",
+            "id": emarsys_id_3,
+            "type": "emarsys_id_3" 
+        })
 
-            if(emarsys_id_1 && !externalIds.some(externalId => externalId.type === "emarsys_id_1"))
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_1,
-                    "type": "emarsys_id_1" 
-                })
-            
-            if(emarsys_id_2 && !externalIds.some(externalId => externalId.type === "emarsys_id_2"))
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_2,
-                    "type": "emarsys_id_2" 
-                })
-            
-            if(emarsys_id_3 && !externalIds.some(externalId => externalId.type === "emarsys_id_3"))
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_3,
-                    "type": "emarsys_id_3" 
-                })
+    next(payload);
+};
 
-            next(payload);
-        },
-
-        init: function() {
-            analytics.addSourceMiddleware(this.emarsysIdMiddleware());
-        }
-    };
-    analytics.ready(
-        seg_matsmart.init()
-    );
+analytics.addSourceMiddleware(this.emarsysIdMiddleware());
     </script>
 
 </head>
