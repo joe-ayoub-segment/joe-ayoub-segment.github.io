@@ -5,9 +5,8 @@
 
     <script>
         
-        
-var seg_matsmart = {
-    addEmarsysIdsMiddleware = function({ payload, next, integrations }) {
+        var seg_matsmart = {
+    addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
             
         const urlParams = new URLSearchParams(window.location.search);
             
@@ -45,7 +44,7 @@ var seg_matsmart = {
 
         next(payload);
     },
-    fireEmailClicked = function(){
+    fireEmailClicked: function(){
         const urlParams = new URLSearchParams(window.location.search);
         let eventName = urlParams.get('event');
         if(eventName && eventName.length > 0)
@@ -57,7 +56,7 @@ var seg_matsmart = {
     analytics.addSourceMiddleware(seg_matsmart.addEmarsysIdsMiddleware);
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEmailClicked();
-}}();        
+}}();
         
         
         
