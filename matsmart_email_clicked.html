@@ -3,7 +3,10 @@
 <head>
     <title>Kitchen sink form</title>
 
-    <script>var seg_matsmart = {
+    <script>
+        
+        
+        var seg_matsmart = {
     addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
             
         const urlParams = new URLSearchParams(window.location.search);
@@ -18,62 +21,53 @@
 
         let externalIds = (payload.obj.context && payload.obj.context.hasOwnProperty('externalIds')) ? payload.obj.context.externalIds : [];
 
-        console.log('1');
-
         if(emarsys_id_1){   
-            console.log('2');         
             let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_1_name);
-            console.log('3');
-            if(removeIndex != -1)
-                externalIds.splice(removeIndex, 1);
-            
-                console.log('4');
-
-            externalIds.push({
-                "collection": "users",
-                "encoding": "none",
-                "id": emarsys_id_1,
-                "type": emarsys_id_1_name 
-            })
-            console.log('5');
+            if(removeIndex == -1){
+                externalIds.push({
+                    "collection": "users",
+                    "encoding": "none",
+                    "id": emarsys_id_1,
+                    "type": emarsys_id_1_name 
+                })
+            }
         }
 
         if(emarsys_id_2){            
             let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_2_name);
-            if(removeIndex != -1)
-                externalIds.splice(removeIndex, 1);
-
-            externalIds.push({
-                "collection": "users",
-                "encoding": "none",
-                "id": emarsys_id_2,
-                "type": emarsys_id_2_name 
-            })
+            if(removeIndex == -1){
+                externalIds.push({
+                    "collection": "users",
+                    "encoding": "none",
+                    "id": emarsys_id_2,
+                    "type": emarsys_id_2_name 
+                })
+            }
         }
 
         if(emarsys_id_3){            
             let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_3_name);
-            if(removeIndex != -1)
-                externalIds.splice(removeIndex, 1);
-
-            externalIds.push({
-                "collection": "users",
-                "encoding": "none",
-                "id": emarsys_id_3,
-                "type": emarsys_id_3_name 
-            })
+            if(removeIndex == -1){
+                externalIds.push({
+                    "collection": "users",
+                    "encoding": "none",
+                    "id": emarsys_id_3,
+                    "type": emarsys_id_3_name 
+                })
+            }
         }
-        console.log('6');
         payload.obj.context.externalIds = externalIds;
-        console.log('7');
         next(payload);
     },
     fireEventFromQuerystring: function(){
         const urlParams = new URLSearchParams(window.location.search);
         let eventName = urlParams.get('event');
-        console.log('8');
-        if(eventName && eventName.length > 0)
+
+        if(eventName && eventName.length > 0){
+            analytics.identify();
             analytics.track(eventName);
+        }
+            
     }
 }
 
@@ -82,6 +76,7 @@
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEventFromQuerystring();
 }}();
+
 
 
 
