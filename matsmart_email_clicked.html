@@ -5,8 +5,7 @@
 
     <script>
         
-        
-    /*
+        /*
  * 
  * Important note: 
  *      This code is intended as a replacement for the Segment Querystring API: 
@@ -36,56 +35,35 @@
  * 
  */
 var seg_matsmart = {
-    addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
-            
+    addEmarsysIdsMiddleware: function({ payload, next, integrations }) {  
+        
         const urlParams = new URLSearchParams(window.location.search);
-            
-        let emarsys_id_1_name = 'emarsys_cid';
-        let emarsys_id_2_name = 'emarsys_cuid';
-        let emarsys_id_3_name = 'emarsys_puid';
-
-        let emarsys_id_1 = urlParams.get(emarsys_id_1_name);
-        let emarsys_id_2 = urlParams.get(emarsys_id_2_name);
-        let emarsys_id_3 = urlParams.get(emarsys_id_3_name);
-
+        
         let externalIds = (payload.obj.context && payload.obj.context.hasOwnProperty('externalIds')) ? payload.obj.context.externalIds : [];
+        
+        let customExternalIds = [
+            {qstringName:'emarsys_cid', externalIdType:'emarsys_cid'},
+            {qstringName:'emarsys_cuid', externalIdType:'emarsys_cuid'},
+            {qstringName:'emarsys_puid', externalIdType:'emarsys_puid'}
+        ]
 
-        if(emarsys_id_1){   
-            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_1_name);
-            if(removeIndex == -1){
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_1,
-                    "type": emarsys_id_1_name 
-                })
+        customExternalIds.forEach(customExternalId => {
+            let value = urlParams.get(externalId.qstringName);
+            if(value){   
+                let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(externalId.externalIdType);
+                if(removeIndex == -1){
+                    externalIds.push({
+                        "collection": "users",
+                        "encoding": "none",
+                        "id": value,
+                        "type": externalId.externalIdType
+                    })
+                }
             }
-        }
+        });
 
-        if(emarsys_id_2){            
-            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_2_name);
-            if(removeIndex == -1){
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_2,
-                    "type": emarsys_id_2_name 
-                })
-            }
-        }
-
-        if(emarsys_id_3){            
-            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_3_name);
-            if(removeIndex == -1){
-                externalIds.push({
-                    "collection": "users",
-                    "encoding": "none",
-                    "id": emarsys_id_3,
-                    "type": emarsys_id_3_name 
-                })
-            }
-        }
         payload.obj.context.externalIds = externalIds;
+        
         next(payload);
     },
     fireEventFromQuerystring: function(){
@@ -105,7 +83,6 @@ var seg_matsmart = {
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEventFromQuerystring();
 }}();
-
 
 
 
