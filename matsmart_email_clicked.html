@@ -5,7 +5,6 @@
 
     <script>
         
-        
         /*
  * 
  * Important note: 
@@ -49,14 +48,14 @@ var seg_matsmart = {
         ]
 
         customExternalIds.forEach(customExternalId => {
-            let value = urlParams.get(externalId.qstringName);
+            let value = urlParams.get(customExternalId.qstringName);
             if(value){   
-                if(externalIds.map(function(item) { return item.type; }).indexOf(externalId.externalIdType) == -1){
+                if(externalIds.map(function(item) { return item.type; }).indexOf(customExternalId.externalIdType) == -1){
                     externalIds.push({
                         "collection": "users",
                         "encoding": "none",
                         "id": value,
-                        "type": externalId.externalIdType
+                        "type": customExternalId.externalIdType
                     })
                 }
             }
