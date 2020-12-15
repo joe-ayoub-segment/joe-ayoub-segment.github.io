@@ -6,7 +6,36 @@
     <script>
         
         
-        var seg_matsmart = {
+    /*
+ * 
+ * Important note: 
+ *      This code is intended as a replacement for the Segment Querystring API: 
+ *      https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/querystring/
+ *      The Segment Querystring API does not invoke the Middleware Function, so the resulting event will not contain any Emarsys identifiers.  
+ * 
+ * Description: 
+ *      Code serves 2 purposes: 
+ *      1. Middleware Function to append specified querystring values to all outgoing events.   
+ *      2. Triggers a track() and identify() events based on a querystring named 'event' being present in the URL.  
+ * 
+ * Setup instructions: 
+ *      1. This code replaces the entire Segment Javascript snippet on a website. 
+ *      2. Insert the correct writeKey in the analytics.load() function
+ *      3. Insert the correct names for the 3 Emarsys identifier values that will be passed in the URL.
+ *          e.g. let emarsys_id_1_name = 'fi_cid';
+ * 
+ * Middleware Function Description: 
+ *      Every Segment event that gets triggered on the page will be routed through the 'addEmarsysIdsMiddleware' Middleware Function. 
+ *      The Function will insert externalIds for emarsys identifiers if those certain querystring values are present in the URL. 
+ * 
+ * Triggering Segment events from the Querystring: 
+ *      Adding a Querystring called 'event=' to the URL will trigger an track() event of that name. 
+ *      The Middleware Function will also be invoked, so any emarsys identifiers will also be appended to the event if they are present in the Querystring. 
+ *      An identify event will also be triggered, and will also have the emarsys identifiers appended.   
+ *  
+ * 
+ */
+var seg_matsmart = {
     addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
             
         const urlParams = new URLSearchParams(window.location.search);
@@ -76,6 +105,7 @@
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEventFromQuerystring();
 }}();
+
 
 
 
