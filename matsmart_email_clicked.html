@@ -4,8 +4,7 @@
     <title>Kitchen sink form</title>
 
     <script>
-        
-   var seg_matsmart = {
+        var seg_matsmart = {
     addEmarsysIdsMiddleware: function({ payload, next, integrations }) {
             
         const urlParams = new URLSearchParams(window.location.search);
@@ -24,7 +23,7 @@
 
         if(emarsys_id_1){   
             console.log('2');         
-            let removeIndex = externalId.map(function(item) { return item.type; }).indexOf(emarsys_id_1_name);
+            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_1_name);
             console.log('3');
             if(removeIndex == -1)
                 externalIds.splice(removeIndex, 1);
@@ -41,7 +40,7 @@
         }
 
         if(emarsys_id_2){            
-            let removeIndex = externalId.map(function(item) { return item.type; }).indexOf(emarsys_id_2_name);
+            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_2_name);
             if(removeIndex == -1)
                 externalIds.splice(removeIndex, 1);
 
@@ -54,7 +53,7 @@
         }
 
         if(emarsys_id_3){            
-            let removeIndex = externalId.map(function(item) { return item.type; }).indexOf(emarsys_id_3_name);
+            let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(emarsys_id_3_name);
             if(removeIndex == -1)
                 externalIds.splice(removeIndex, 1);
 
@@ -84,6 +83,7 @@
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEventFromQuerystring();
 }}();
+
 
         
     </script>
