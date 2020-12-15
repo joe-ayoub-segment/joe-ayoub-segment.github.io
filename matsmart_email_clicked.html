@@ -1,11 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 
 <head>
-    <title>Kitchen sink form</title>
+    <title>Email Clicked and External Ids from Emarsys</title>
 
-    <script>
-        
-        /*
+<script>
+/*
  * 
  * Important note: 
  *      This code is intended as a replacement for the Segment Querystring API: 
@@ -20,8 +19,9 @@
  * Setup instructions: 
  *      1. This code replaces the entire Segment Javascript snippet on a website. 
  *      2. Insert the correct writeKey in the analytics.load() function
- *      3. Insert the correct names for the 3 Emarsys identifier values that will be passed in the URL.
- *          e.g. let emarsys_id_1_name = 'fi_cid';
+ *      3. Insert the correct names for the 3 Emarsys identifier values in customExternalIds.
+ *          .qstringName = name of the querystring value to read from the URL.
+ *          .externalIdType = the name of the type of externalId that will be sent to Segment. 
  * 
  * Middleware Function Description: 
  *      Every Segment event that gets triggered on the page will be routed through the 'addEmarsysIdsMiddleware' Middleware Function. 
@@ -83,12 +83,8 @@ var seg_matsmart = {
     seg_matsmart.fireEventFromQuerystring();
 }}();
 
-
-
-
-
         
-    </script>
+</script>
 
 </head>
 
