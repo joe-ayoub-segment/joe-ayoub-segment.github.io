@@ -5,6 +5,7 @@
 
     <script>
         
+        
         /*
  * 
  * Important note: 
@@ -50,8 +51,7 @@ var seg_matsmart = {
         customExternalIds.forEach(customExternalId => {
             let value = urlParams.get(externalId.qstringName);
             if(value){   
-                let removeIndex = externalIds.map(function(item) { return item.type; }).indexOf(externalId.externalIdType);
-                if(removeIndex == -1){
+                if(externalIds.map(function(item) { return item.type; }).indexOf(externalId.externalIdType) == -1){
                     externalIds.push({
                         "collection": "users",
                         "encoding": "none",
@@ -83,6 +83,7 @@ var seg_matsmart = {
     analytics.load('f0mkFrd38lR8LW97t73odW9VkiQP532m');
     seg_matsmart.fireEventFromQuerystring();
 }}();
+
 
 
 
