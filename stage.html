@@ -27,7 +27,8 @@
             let event = this.getQueryStringParam('event', url);
             let email_user_id = this.getQueryStringParam('properties.email_user_id', url);
             let email_template = this.getQueryStringParam('properties.email_template', url);
-            let utm_name = this.getQueryStringParam('context.page.campaign.utm_campaign', url);
+            
+            let utm_campaign = this.getQueryStringParam('context.page.campaign.utm_campaign', url);
             let utm_source = this.getQueryStringParam('context.page.campaign.utm_source', url);
             let utm_content = this.getQueryStringParam('context.page.campaign.utm_content', url);
             let utm_term = this.getQueryStringParam('context.page.campaign.utm_term', url);
@@ -39,14 +40,14 @@
             }
             
             let campaign = {
-                utm_name: utm_name === undefined ? undefined : utm_name,
-                utm_source: utm_source === undefined ? undefined : utm_source,
-                utm_content: utm_name === undefined ? undefined : utm_content,
-                utm_term: utm_term === undefined ? undefined : utm_term,
-                utm_medium: utm_medium === undefined ? undefined : utm_medium,
+                name: utm_campaign === undefined ? undefined : utm_campaign,
+                source: utm_source === undefined ? undefined : utm_source,
+                content: utm_content === undefined ? undefined : utm_content,
+                term: utm_term === undefined ? undefined : utm_term,
+                medium: utm_medium === undefined ? undefined : utm_medium,
             };
 
-            analytics.track(event, properties, {context: {page: {campaign}}});
+            analytics.track(event, properties, {context: {campaign:campaign}});
 
         }
     };
