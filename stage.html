@@ -25,7 +25,7 @@
             const url = new URL(window.location.href);
             
             let event = this.getQueryStringParam('event', url);
-            let email_user_id = this.getQueryStringParam('properties.email_user_id', url);
+            let dc_golden_customer_id = this.getQueryStringParam('properties.dc_golden_customer_id', url);
             let email_template = this.getQueryStringParam('properties.email_template', url);
             
             let utm_campaign = this.getQueryStringParam('context.campaign.utm_name', url);
@@ -35,7 +35,7 @@
             let utm_medium = this.getQueryStringParam('context.campaign.utm_medium', url);
 
             let properties = {
-                email_user_id : email_user_id,
+                dc_golden_customer_id : dc_golden_customer_id,
                 email_template: email_template
             }
             
@@ -47,7 +47,8 @@
                 medium: utm_medium === undefined ? undefined : utm_medium,
             };
 
-            analytics.track(event, properties, {context: {campaign:campaign}});
+            if(event != null && event.length>0)
+                analytics.track(event, properties, {context: {campaign:campaign}});
 
         }
     };
