@@ -35,7 +35,7 @@
   }
 }();
 </script>
-<script>var stage_segment = {
+<script>
   // Function to get value from QueryString
   getQueryStringParam: function (name, url) {
     if (!url) url = new URL(window.location.href);
@@ -75,10 +75,6 @@
     if (event != null && event.length > 0)
       analytics.track(event, properties, {context: {campaign: campaign}});
   }
-};
-analytics.ready(
-  () => stage_segment.init()
-);
 </script>
   
 </head>
