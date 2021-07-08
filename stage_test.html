@@ -4,110 +4,56 @@
 <head>
   <title>test page</title>
   
-<script>!function () {
-  var analytics = window.analytics = window.analytics || [];
-  if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
-    analytics.invoked = !0;
-    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
-    analytics.factory = function (e) {
-      return function () {
-        var t = Array.prototype.slice.call(arguments);
-        t.unshift(e);
-        analytics.push(t);
-        return analytics
-      }
-    };
-    for (var e = 0; e < analytics.methods.length; e++) {
-      var key = analytics.methods[e];
-      analytics[key] = analytics.factory(key)
-    }
-    analytics.load = function (key, e) {
-      var t = document.createElement("script");
-      t.type = "text/javascript";
-      t.async = !0;
-      t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-      var n = document.getElementsByTagName("script")[0];
-      n.parentNode.insertBefore(t, n);
-      analytics._loadOptions = e
-    };
-    analytics._writeKey = "ZUcVSydlBd9cXvTXb6mvHf9sBbj20zPT";
-    analytics.SNIPPET_VERSION = "4.13.2";
-  }
-}();
+
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="ZUcVSydlBd9cXvTXb6mvHf9sBbj20zPT";analytics.SNIPPET_VERSION="4.13.2";
+  }}();
 </script>
-<script>!function () {
-  var analytics = window.analytics = window.analytics || [];
-  if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
-    analytics.invoked = !0;
-    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
-    analytics.factory = function (e) {
-      return function () {
-        var t = Array.prototype.slice.call(arguments);
-        t.unshift(e);
-        analytics.push(t);
-        return analytics
-      }
+
+<script>
+    var stage_segment = {
+        // Function to get value from QueryString
+        getQueryStringParam: function(name, url) {
+            if (!url) url = new URL(window.location.href);
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        },
+        init: function() {
+            var url = new URL(window.location.href);
+            
+            var event = this.getQueryStringParam('event', url);
+            var dc_golden_customer_id = this.getQueryStringParam('properties.dc_golden_customer_id', url);
+            var email_template = this.getQueryStringParam('properties.email_template', url);
+            
+            var utm_campaign = this.getQueryStringParam('context.campaign.utm_campaign', url);
+            var utm_source = this.getQueryStringParam('context.campaign.utm_source', url);
+            var utm_content = this.getQueryStringParam('context.campaign.utm_content', url);
+            var utm_term = this.getQueryStringParam('context.campaign.utm_term', url);
+            var utm_medium = this.getQueryStringParam('context.campaign.utm_medium', url);
+
+            var properties = {
+                dc_golden_customer_id : dc_golden_customer_id,
+                email_template: email_template
+            }
+            
+            var campaign = {
+                name: utm_campaign === undefined ? undefined : utm_campaign,
+                source: utm_source === undefined ? undefined : utm_source,
+                content: utm_content === undefined ? undefined : utm_content,
+                term: utm_term === undefined ? undefined : utm_term,
+                medium: utm_medium === undefined ? undefined : utm_medium,
+            };
+
+            if(event != null && event.length>0)
+                analytics.track(event, properties, {context: {campaign:campaign}});
+
+        }
     };
-    for (var e = 0; e < analytics.methods.length; e++) {
-      var key = analytics.methods[e];
-      analytics[key] = analytics.factory(key)
-    }
-    analytics.load = function (key, e) {
-      var t = document.createElement("script");
-      t.type = "text/javascript";
-      t.async = !0;
-      t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-      var n = document.getElementsByTagName("script")[0];
-      n.parentNode.insertBefore(t, n);
-      analytics._loadOptions = e
-    };
-    analytics._writeKey = "ZUcVSydlBd9cXvTXb6mvHf9sBbj20zPT";
-    analytics.SNIPPET_VERSION = "4.13.2";
-  }
-}();
-</script>
-<script>var stage_segment = {
-  // Function to get value from QueryString
-  getQueryStringParam: function (name, url) {
-    if (!url) url = new URL(window.location.href);
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  },
-  init: function () {
-    const url = new URL(window.location.href);
-
-    let event = this.getQueryStringParam('event', url);
-    let dc_golden_customer_id = this.getQueryStringParam('properties.dc_golden_customer_id', url);
-    let email_template = this.getQueryStringParam('properties.email_template', url);
-
-    let utm_campaign = this.getQueryStringParam('context.campaign.utm_campaign', url);
-    let utm_source = this.getQueryStringParam('context.campaign.utm_source', url);
-    let utm_content = this.getQueryStringParam('context.campaign.utm_content', url);
-    let utm_term = this.getQueryStringParam('context.campaign.utm_term', url);
-    let utm_medium = this.getQueryStringParam('context.campaign.utm_medium', url);
-
-    let properties = {
-      dc_golden_customer_id: dc_golden_customer_id,
-      email_template: email_template
-    }
-
-    let campaign = {
-      name: utm_campaign === undefined ? undefined : utm_campaign,
-      source: utm_source === undefined ? undefined : utm_source,
-      content: utm_content === undefined ? undefined : utm_content,
-      term: utm_term === undefined ? undefined : utm_term,
-      medium: utm_medium === undefined ? undefined : utm_medium,
-    };
-
-    if (event != null && event.length > 0)
-      analytics.track(event, properties, {context: {campaign: campaign}});
-  }
-};
-() => stage_segment.init();
+    function() { stage_segment.init() }
 </script>
   
 </head>
