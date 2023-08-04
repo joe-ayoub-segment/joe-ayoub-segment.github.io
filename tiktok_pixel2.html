@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>TikTok Pixel test page - BYO Pixel</title>
+
+
+<script>
+
+!(function (w, d, t) {
+    w.TiktokAnalyticsObject = t
+    var ttq = (w[t] = w[t] || [])
+    ;(ttq.methods = [
+      'page',
+      'track',
+      'identify',
+      'instances',
+      'debug',
+      'on',
+      'off',
+      'once',
+      'ready',
+      'alias',
+      'group',
+      'enableCookie',
+      'disableCookie'
+    ]),
+      (ttq.setAndDefer = function (t, e) {
+        t[e] = function () {
+          t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+        }
+      })
+    for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i])
+    ;(ttq.instance = function (t) {
+      for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n])
+      return e
+    }),
+      (ttq.load = function (e, n) {
+        var i = 'https://analytics.tiktok.com/i18n/pixel/events.js'
+        ;(ttq._i = ttq._i || {}),
+          (ttq._i[e] = []),
+          (ttq._i[e]._u = i),
+          (ttq._t = ttq._t || {}),
+          (ttq._t[e] = +new Date()),
+          (ttq._o = ttq._o || {}),
+          (ttq._o[e] = n || {})
+        var o = document.createElement('script')
+        ;(o.type = 'text/javascript'), (o.async = !0), (o.src = i + '?sdkid=' + e + '&lib=' + t)
+        var a = document.getElementsByTagName('script')[0]
+        a.parentNode.insertBefore(o, a)
+      })
+
+    ttq.load(CIO2863C77UD5V58639G)
+    ttq.page()
+  })(window, document, 'ttq')
+  
+</script>
+  
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){if(window.analytics.initialized)return window.analytics[e].apply(window.analytics,arguments);var i=Array.prototype.slice.call(arguments);i.unshift(e);analytics.push(i);return analytics}};for(var i=0;i<analytics.methods.length;i++){var key=analytics.methods[i];analytics[key]=analytics.factory(key)}analytics.load=function(key,i){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=i};analytics._writeKey="T9vdfQ5rwzsllq0qDeAXSN7EOJrZiZVJ";;analytics.SNIPPET_VERSION="4.16.1";
+  analytics.load("T9vdfQ5rwzsllq0qDeAXSN7EOJrZiZVJ");
+  }}();
+</script>
+
+</head>
+
+<body>
+    <p> This is a TikTok Pixel Test Page</p>
+</body>
+
+</html>
